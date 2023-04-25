@@ -3,36 +3,36 @@ package com.minascafe.api.services.impl;
 
 import java.util.Optional;
 
-import com.minascafe.api.entities.Cafe_Maquina;
-import com.minascafe.api.repositories.Cafe_MaquinaRepository;
-import com.minascafe.api.services.Cafe_Maquina_Service;
+import com.minascafe.api.entities.CafeMaquina;
+import com.minascafe.api.repositories.CafeMaquinaRepository;
+import com.minascafe.api.services.CafeMaquinaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service //Cria um serviço
-public class Cafe_MaquinaImpl implements Cafe_Maquina_Service {
+public class Cafe_MaquinaImpl implements CafeMaquinaService {
 
     private static final Logger log = LoggerFactory.getLogger(Cafe_MaquinaImpl.class);//Declarando o log = "descreve eventos do funcionamento do sistema"
 
     @Autowired
-    private Cafe_MaquinaRepository cafe_MaquinaRepository;//Declarando variável cafe_MaquinaRepository
+    private CafeMaquinaRepository cafe_MaquinaRepository;//Declarando variável cafe_MaquinaRepository
 
     @Override
-    public Optional<Cafe_Maquina> buscarPorLote(int Lote){
+    public Optional<CafeMaquina> buscarPorLote(int Lote){
         log.info("Buscando  pelo lote: {}, um café que foi beneficiado no armazém (M)", Lote);
         return Optional.ofNullable(cafe_MaquinaRepository.findByLote(Lote));
     }
 
     @Override
-    public Optional<Cafe_Maquina> buscarPorProdutor(String Produtor){
+    public Optional<CafeMaquina> buscarPorProdutor(String Produtor){
         log.info("Buscando um café do produtor {}, que foi beneficiado no armazém (M)", Produtor);
         return Optional.ofNullable(cafe_MaquinaRepository.findByProdutor(Produtor));
     }
 
     @Override
-    public Cafe_Maquina persistir (Cafe_Maquina cafe_Maquina) {
+    public CafeMaquina persistir (CafeMaquina cafe_Maquina) {
         log.info("Persistindo Café Beneficiado no armazém: {}", cafe_Maquina);
         return this.cafe_MaquinaRepository.save(cafe_Maquina);
     }

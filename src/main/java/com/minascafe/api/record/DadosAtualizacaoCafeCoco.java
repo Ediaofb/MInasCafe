@@ -1,15 +1,21 @@
 package com.minascafe.api.record;
 
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Date;
+
 public record DadosAtualizacaoCafeCoco(
-        int lote,
+        @NotNull
+        Integer lote,
         String produtor,
-        int catacao,
+        Date data,
+        Integer catacao,
         String classificacao,
         String lancado,
         String meieiro,
-        int numero_nota,
+        Integer numero_nota,
         String observacoes,
-        int peneira,
-        int porcentagem_meieiro,
-        int porcentagem_produtor) {
+        Integer peneira,
+        Integer porcentagem_meieiro,
+        Integer porcentagem_produtor) {
 }
