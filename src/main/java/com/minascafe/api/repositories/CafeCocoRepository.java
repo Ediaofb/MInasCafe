@@ -2,7 +2,6 @@ package com.minascafe.api.repositories;
 //@author Edson Ferreira Barbosa
 
 import com.minascafe.api.entities.CafeCoco;
-import com.minascafe.api.record.DadosAtualizacaoCafeCoco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

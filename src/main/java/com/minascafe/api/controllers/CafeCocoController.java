@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-@RestController//Endpoint (página web) de Controller
+@RestController //Endpoint (página web) de Controller
 @RequestMapping("cafecoco") //Define a url da classe
 public class CafeCocoController {
 
@@ -25,7 +25,7 @@ public class CafeCocoController {
     @Autowired
     private CafeCocoRepository cafe_coco; //Injetando o Repository como sendo um atributo
 
-    @PostMapping
+    @PostMapping //
     @Transactional//Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
     public void cadastrar(@RequestBody @Valid DadosCadastroCafeCoco cc){ //RequestBody = Busca do corpo da requisição
         cafe_coco.save(new CafeCoco(cc)); //Salva um novo objeto entidade JPA do tipo CafeCoco passando os

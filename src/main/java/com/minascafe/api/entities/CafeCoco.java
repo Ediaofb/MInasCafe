@@ -2,7 +2,7 @@ package com.minascafe.api.entities;
 //@author Edson Ferreira Barbosa
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import com.minascafe.api.record.DadosAtualizacaoCafeCoco;
 import com.minascafe.api.record.DadosCadastroCafeCoco;
 import jakarta.persistence.Column;
@@ -23,13 +23,13 @@ public class CafeCoco implements Serializable{
     @Id //Chave primária = Spring criará e gerenciará os identificadores únicos da tabela "cad_cafe_coco"
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
     private int lote;
-
     private String produtor;
     private String apelido;
     private String status;
-    private Date data;
+    private LocalDate data;
     private int sacos;
-    private double quilos;
+    private float quilos;
+    private Float humidade;
     private int barracao;
     private String subproduto;
     private int numero_nota;
@@ -40,8 +40,9 @@ public class CafeCoco implements Serializable{
     private String observacoes;
     private String referencia;
     private String meieiro;
-    private String porcentagem_produtor;
-    private String porcentagem_meieiro;
+    private int porcentagem_produtor;
+    private int porcentagem_meieiro;
+
 
     public CafeCoco(DadosCadastroCafeCoco cc){
         this.produtor = cc.produtor();
@@ -58,6 +59,7 @@ public class CafeCoco implements Serializable{
         this.subproduto = cc.subproduto();
         this.sacos = cc.sacos();
         this.quilos = cc.quilos();
+        this.humidade = cc.humidade();
         this.observacoes = cc.observacoes();
         this.meieiro = cc.meieiro();
         this.porcentagem_meieiro = cc.porcentagem_meieiro();
@@ -84,13 +86,22 @@ public class CafeCoco implements Serializable{
         this.produtor = produtor;
     }
 
-    @Column (name = "apelido", nullable = false)
+    @Column (name = "apelido", nullable = true)
     public String getApelido() {
         return apelido;
     }
 
     public void setApelido(String apelido) {
         this.apelido = apelido;
+    }
+
+    @Column (name = "humidade", nullable = true)
+    public Float getHumidade() {
+        return humidade;
+    }
+
+    public void setHumidade(float humidade) {
+        this.humidade = humidade;
     }
 
     @Column (name = "status", nullable = true)
@@ -103,11 +114,11 @@ public class CafeCoco implements Serializable{
     }
 
     @Column (name = "data", nullable = false)
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -121,11 +132,11 @@ public class CafeCoco implements Serializable{
     }
 
     @Column (name = "quilos", nullable = false)
-    public double getQuilos() {
+    public float getQuilos() {
         return quilos;
     }
 
-    public void setQuilos(double quilos) {
+    public void setQuilos(float quilos) {
         this.quilos = quilos;
     }
 
@@ -220,20 +231,20 @@ public class CafeCoco implements Serializable{
     }
 
     @Column (name = "porcentagem_produtor", nullable = true)
-    public String getPorcentagem_produtor() {
+    public int getPorcentagem_produtor() {
         return porcentagem_produtor;
     }
 
-    public void setPorcentagem_produtor(String porcentagem_produtor) {
+    public void setPorcentagem_produtor(int porcentagem_produtor) {
         this.porcentagem_produtor = porcentagem_produtor;
     }
 
     @Column (name = "porcentagem_meieiro", nullable = true)
-    public String getPorcentagem_meieiro() {
+    public int getPorcentagem_meieiro() {
         return porcentagem_meieiro;
     }
 
-    public void setPorcentagem_meieiro(String porcentagem_meieiro) {
+    public void setPorcentagem_meieiro(int porcentagem_meieiro) {
         this.porcentagem_meieiro = porcentagem_meieiro;
     }
 
@@ -250,16 +261,35 @@ public class CafeCoco implements Serializable{
 
     @Override
     public String toString() {
-        return "CafeCoco [lote=" + lote + ", produtor=" + produtor + ", apelido=" + apelido + ", status=" + status + ", data=" + data
-                + ", sacos=" + sacos + ", quilos=" + quilos + ", barracao=" + barracao + ", subproduto=" + subproduto
-                + ", numero_nota=" + numero_nota + ", classificacao=" + classificacao + ", catacao=" + catacao
-                + ", peneira=" + peneira + ", lancado=" + lancado + ", observacoes=" + observacoes + ", referencia="
-                + referencia + ", meieiro=" + meieiro + ", porcentagem_produtor=" + porcentagem_produtor
-                + ", porcentagem_meieiro=" + porcentagem_meieiro + "]";
+        return "CafeCoco{" +
+                "lote=" + lote +
+                ", produtor='" + produtor + '\'' +
+                ", apelido='" + apelido + '\'' +
+                ", status='" + status + '\'' +
+                ", data=" + data +
+                ", sacos=" + sacos +
+                ", quilos=" + quilos +
+                ", humidade=" + humidade +
+                ", barracao=" + barracao +
+                ", subproduto='" + subproduto + '\'' +
+                ", numero_nota=" + numero_nota +
+                ", classificacao='" + classificacao + '\'' +
+                ", catacao=" + catacao +
+                ", peneira=" + peneira +
+                ", lancado='" + lancado + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", referencia='" + referencia + '\'' +
+                ", meieiro='" + meieiro + '\'' +
+                ", porcentagem_produtor=" + porcentagem_produtor +
+                ", porcentagem_meieiro=" + porcentagem_meieiro +
+                '}';
     }
 
     public void atualizarInformacoes(DadosAtualizacaoCafeCoco da) {
         if (da.data() != null){
+            System.out.println("\n\n\n DATA ATUAL: " +this.data);
+            System.out.println("NOVA DATA: " +da.data() +"\n\n\n");
+
             this.data = da.data();
         }
         if(da.produtor() != null) {
@@ -285,6 +315,12 @@ public class CafeCoco implements Serializable{
         }
         if(da.peneira() != null){
             this.peneira = da.peneira();
+        }
+        if(da.porcentagem_produtor() != null){
+            this.porcentagem_produtor = da.porcentagem_produtor();
+        }
+        if(da.porcentagem_meieiro() != null){
+            this.porcentagem_meieiro = da.porcentagem_meieiro();
         }
     }
 }

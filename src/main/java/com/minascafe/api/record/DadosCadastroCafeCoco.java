@@ -2,31 +2,32 @@ package com.minascafe.api.record;
 
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Range;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public record DadosCadastroCafeCoco(
         @NotBlank //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
         String produtor,
         String apelido,
-        String status,
         @NotNull
-        Date data,
+        LocalDate data,
+        int catacao,
+        int barracao,
+        String classificacao,
+        String lancado,
+        int peneira,
+        Float humidade,
+        int numero_nota,
+        String status,
+        String referencia,
+        String subproduto,
         @NotNull
         int sacos,
         @NotNull
         @Range(min = 0, max = 45, message = "Acima de 45 quilos, considere adicionar mais 1 saco!")
-        double quilos,
-        int barracao,
-        String subproduto,
-        int numero_nota,
-        String classificacao,
-        int catacao,
-        int peneira,
-        String lancado,
+        float quilos,
         String observacoes,
-        String referencia,
         String meieiro,
-        String porcentagem_produtor,
-        String porcentagem_meieiro) {
+        int porcentagem_meieiro,
+        int porcentagem_produtor) {
 
 }

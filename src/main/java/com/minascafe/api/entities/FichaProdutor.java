@@ -4,6 +4,7 @@ package com.minascafe.api.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.minascafe.api.record.DadosFichaProdutor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,6 +44,12 @@ public class FichaProdutor implements Serializable{
     private String nome_corentista;
     private String chave_pix;
     private Date aniversario;
+
+    public FichaProdutor(DadosFichaProdutor fp) {
+    }
+
+    public FichaProdutor(){
+    }
 
     public int getId() {
         return id;

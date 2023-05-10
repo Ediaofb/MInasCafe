@@ -1,12 +1,13 @@
 package com.minascafe.api.dtos;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class CafeBaixadoDto {//Faz a conversão entre o que o usuário envia e a aplicação
 
     private int lote;
     private String produtor;
-    private Date data;
+    private LocalDate data;
     private int sacas;
     private double quilos;
     private String subproduto;
@@ -31,11 +32,11 @@ public class CafeBaixadoDto {//Faz a conversão entre o que o usuário envia e a
         this.produtor = produtor;
     }
 
-    public Date getData()
+    public LocalDate getData()
     {
         return data;
     }
-    public void setData(Date data)
+    public void setData(LocalDate data)
     {
         this.data = data;
     }

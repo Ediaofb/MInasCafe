@@ -2,8 +2,9 @@ package com.minascafe.api.entities;
 //@author Edson Ferreira Barbosa
 
 import java.io.Serializable;
-import java.util.Date;
-
+import java.time.LocalDate;
+import com.minascafe.api.record.DadosAtualizacaoCafeBeneficiado;
+import com.minascafe.api.record.DadosCadastroCafeBeneficiado;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,23 +13,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
 @Table(name = "cad_cafe_beneficiado") //Define o nome da tabela no banco em que a entity representa (em caso de não ser o mesmo nome da Entity)
-
-
 public class CafeBeneficiado implements Serializable{
 
     private static final long serialVersionUID = 5255241255596615186L;
     @Id //Chave primária = Spring criará e gerenciará os identificadores únicos da tabela "Cad_Cafe_Beneficiado"
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
     private int lote;
-
     private String produtor;
+    private String apelido;
     private String status;
-    private Date data;
+    private LocalDate data;
     private int sacas;
     private double quilos;
+    private Float humidade;
     private int barracao;
     private String subproduto;
     private int numero_nota;
@@ -41,7 +42,28 @@ public class CafeBeneficiado implements Serializable{
     private int porcentagem_produtor;
     private int porcentagem_meieiro;
 
-    public CafeBeneficiado() {
+    public CafeBeneficiado(DadosCadastroCafeBeneficiado cb) {
+        this.produtor = cb.produtor();
+        this.apelido = cb.apelido();
+        this.data = cb.data();
+        this.catacao = cb.catacao();
+        this.barracao = cb.barracao();
+        this.humidade = cb.humidade();
+        this.classificacao = cb.classificacao();
+        this.lancado = cb.lancado();
+        this.peneira = cb.peneira();
+        this.numero_nota = cb.numero_nota();
+        this.status = cb.status();
+        this.subproduto = cb.subproduto();
+        this.sacas = cb.sacas();
+        this.quilos = cb.quilos();
+        this.observacoes = cb.observacoes();
+        this.meieiro = cb.meieiro();
+        this.porcentagem_meieiro = cb.porcentagem_meieiro();
+        this.porcentagem_produtor = cb.porcentagem_produtor();
+    }
+
+    public CafeBeneficiado(){
     }
 
     public int getLote() {
@@ -61,6 +83,11 @@ public class CafeBeneficiado implements Serializable{
         this.produtor = produtor;
     }
 
+    @Column (name = "apelido", nullable = true)
+    public String getApelido(){ return apelido; }
+
+    public void setApelido(String apelido) {this.apelido = apelido;}
+
     @Column (name = "status", nullable = true)
     public String getStatus() {
         return status;
@@ -71,11 +98,11 @@ public class CafeBeneficiado implements Serializable{
     }
 
     @Column (name = "data", nullable = false)
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -142,7 +169,7 @@ public class CafeBeneficiado implements Serializable{
         this.catacao = catacao;
     }
 
-    @Column (name = "peneira", nullable = false)
+    @Column (name = "peneira", nullable = true)
     public int getPeneira() {
         return peneira;
     }
@@ -151,7 +178,7 @@ public class CafeBeneficiado implements Serializable{
         this.peneira = peneira;
     }
 
-    @Column (name = "lancado", nullable = false)
+    @Column (name = "lancado", nullable = true)
     public String getLancado() {
         return lancado;
     }
@@ -160,7 +187,7 @@ public class CafeBeneficiado implements Serializable{
         this.lancado = lancado;
     }
 
-    @Column (name = "observacoes", nullable = false)
+    @Column (name = "observacoes", nullable = true)
     public String getObservacoes() {
         return observacoes;
     }
@@ -169,7 +196,7 @@ public class CafeBeneficiado implements Serializable{
         this.observacoes = observacoes;
     }
 
-    @Column (name = "meieiro", nullable = false)
+    @Column (name = "meieiro", nullable = true)
     public String getMeieiro() {
         return meieiro;
     }
@@ -178,7 +205,7 @@ public class CafeBeneficiado implements Serializable{
         this.meieiro = meieiro;
     }
 
-    @Column (name = "porcentagem_produtor", nullable = false)
+    @Column (name = "porcentagem_produtor", nullable = true)
     public int getPorcentagem_produtor() {
         return porcentagem_produtor;
     }
@@ -187,16 +214,23 @@ public class CafeBeneficiado implements Serializable{
         this.porcentagem_produtor = porcentagem_produtor;
     }
 
-    @Column (name = "porcentagem_meieiro", nullable = false)
+    @Column (name = "porcentagem_meieiro", nullable = true)
     public int getPorcentagem_meieiro() {
         return porcentagem_meieiro;
     }
 
     public void setPorcentagem_meieiro(int porcentagem_meieiro) {
-
+      this.porcentagem_meieiro = porcentagem_meieiro;
     }
 
-    @PreUpdate //executa o método anotado antes da entidade ser atualizada
+    @Column (name = "humidade", nullable = true)
+        public float gethumidade() { return humidade; }
+
+    public void setHumidade(float humidade){
+        this.humidade = humidade;
+    }
+
+/*    @PreUpdate //executa o método anotado antes da entidade ser atualizada
     public void preUpdate() {
         data = new Date();
     }
@@ -205,7 +239,7 @@ public class CafeBeneficiado implements Serializable{
     public void prePersist() {
         final Date atual = new Date();
         data = atual;
-    }
+    }*/
 
     @Override
     public String toString() { //retorna uma representação string de um objeto
@@ -215,4 +249,39 @@ public class CafeBeneficiado implements Serializable{
                 + ", peneira=" + peneira + ", lancado=" + lancado + ", observacoes=" + observacoes + "]";
     }
 
+    public void atualizarInformacoes(DadosAtualizacaoCafeBeneficiado cb) {
+        if(cb.data() != null){
+            this.data = cb.data();
+        }
+        if(cb.produtor() != null){
+            this.produtor = cb.produtor();
+        }
+        if(cb.catacao() != null){
+            this.catacao = cb.catacao();
+        }
+        if(cb.classificacao() != null){
+            this.classificacao = cb.classificacao();
+        }
+        if(cb.lancado() != null){
+            this.lancado = cb.lancado();
+        }
+        if(cb.meieiro() != null){
+            this.meieiro = cb.meieiro();
+        }
+        if(cb.numero_nota() != null){
+            this.numero_nota = cb.numero_nota();
+        }
+        if(cb.observacoes() != null){
+            this.observacoes = cb.observacoes();
+        }
+        if(cb.peneira() != null){
+            this.peneira = cb.peneira();
+        }
+        if(cb.porcentagem_produtor() != null){
+            this.porcentagem_produtor = cb.porcentagem_produtor();
+        }
+        if (cb.porcentagem_meieiro() != null){
+            this.porcentagem_meieiro = cb.porcentagem_meieiro();
+        }
+    }
 }

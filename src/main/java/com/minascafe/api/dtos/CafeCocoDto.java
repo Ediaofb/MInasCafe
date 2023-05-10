@@ -1,9 +1,7 @@
 package com.minascafe.api.dtos;
 
 import java.util.Date;
-
 import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,9 +9,32 @@ public class CafeCocoDto {
 
     private int lote;
     private String produtor;
+    private String apelido;
     private Date data;
+    private int catacao;
+    private int barracao;
+    private String classificacao;
+    private String lancado;
+    private int peneira;
+    private float humidade;
+    private int numero_nota;
+    private String status;
+    private String referencia;
+    private String subproduto;
     private int sacos;
-    private double quilos;
+    private float quilos;
+    private String observacoes;
+    private String meieiro;
+    private String porcentagem_meieiro;
+    private String porcentagem_produtor;
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+    public String getApelido() {
+        return apelido;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -110,6 +131,13 @@ public class CafeCocoDto {
         this.porcentagem_produtor = porcentagem_produtor;
     }
 
+    public int getLote() {
+        return lote;
+    }
+    public void setLote(int lote) {
+        this.lote = lote;
+    }
+
     public String getPorcentagem_meieiro() {
         return porcentagem_meieiro;
     }
@@ -118,29 +146,33 @@ public class CafeCocoDto {
         this.porcentagem_meieiro = porcentagem_meieiro;
     }
 
-    private String status;
-    private int barracao;
-    private String subproduto;
-    private int numero_nota;
-    private String classificacao;
-    private int catacao;
-    private int peneira;
-    private String lancado;
-    private String observacoes;
-    private String referencia;
-    private String meieiro;
-    private String porcentagem_produtor;
-    private String porcentagem_meieiro;
-
+    @Override
+    public String toString() {
+        return "CafeCocoDto{" +
+                "lote=" + lote +
+                ", produtor='" + produtor + '\'' +
+                ", apelido='" + apelido + '\'' +
+                ", data=" + data +
+                ", catacao=" + catacao +
+                ", barracao=" + barracao +
+                ", classificacao='" + classificacao + '\'' +
+                ", lancado='" + lancado + '\'' +
+                ", peneira=" + peneira +
+                ", humidade=" + humidade +
+                ", numero_nota=" + numero_nota +
+                ", status='" + status + '\'' +
+                ", referencia='" + referencia + '\'' +
+                ", subproduto='" + subproduto + '\'' +
+                ", sacos=" + sacos +
+                ", quilos=" + quilos +
+                ", observacoes='" + observacoes + '\'' +
+                ", meieiro='" + meieiro + '\'' +
+                ", porcentagem_meieiro='" + porcentagem_meieiro + '\'' +
+                ", porcentagem_produtor='" + porcentagem_produtor + '\'' +
+                '}';
+    }
 
     public CafeCocoDto() {
-    }
-
-    public int getLote() {
-        return lote;
-    }
-    public void setLote(int lote) {
-        this.lote = lote;
     }
 
     @NotEmpty(message = "O nome não pode ser vazio.") // Regra de validação - O nome do produtor não pode ser vazio
@@ -168,13 +200,8 @@ public class CafeCocoDto {
     public double getQuilos() {
         return quilos;
     }
-    public void setQuilos(double quilos) {
+    public void setQuilos(float quilos) {
         this.quilos = quilos;
     }
 
-    @Override
-    public String toString() {
-        return "CafeCoco [lote=" + lote + ", produtor=" + produtor + ", data=" + data
-                + ", sacos=" + sacos + ", quilos=" + quilos + ", subproduto=" + "]";
-    }
 }

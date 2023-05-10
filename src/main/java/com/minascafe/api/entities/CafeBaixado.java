@@ -3,8 +3,8 @@ package com.minascafe.api.entities;
 //@author Edson Ferreira Barbosa
 
 import java.io.Serializable;
-import java.util.Date;
-
+import java.time.LocalDate;
+import com.minascafe.api.record.DadosCadastroCafeBaixado;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +32,7 @@ public class CafeBaixado implements Serializable{
 
     private String produtor;
     private String status;
-    private Date data;
+    private LocalDate data;
     private int sacas;
     private double quilos;
     private int barracao;
