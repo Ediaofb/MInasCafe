@@ -4,6 +4,8 @@ package com.minascafe.api.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import com.minascafe.api.record.DadosAtualizacaoCafeBaixado;
 import com.minascafe.api.record.DadosCadastroCafeBaixado;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class CafeBaixado implements Serializable{
     private int lote;
 
     private String produtor;
+    private String apelido;
     private String status;
     private LocalDate data;
     private int sacas;
@@ -41,6 +44,7 @@ public class CafeBaixado implements Serializable{
     private String classificacao;
     private int catacao;
     private int peneira;
+    private Float humidade;
     private String lancado;
     private String observacoes;
     private String referencia;
@@ -48,4 +52,64 @@ public class CafeBaixado implements Serializable{
     private int porcentagem_produtor;
     private int porcentagem_meieiro;
 
+    public CafeBaixado(DadosCadastroCafeBaixado baix){
+        this.produtor = baix.produtor();
+        this.apelido = baix.apelido();
+        this.status = baix.status();
+        this.data = baix.data();
+        this.sacas = baix.sacas();
+        this.quilos = baix.quilos();
+        this.barracao = baix.barracao();
+        this.subproduto = baix.subproduto();
+        this.numero_nota = baix.numero_nota();
+        this.classificacao = baix.classificacao();
+        this.catacao = baix.catacao();
+        this.peneira = baix.peneira();
+        this.humidade = baix.humidade();
+        this.lancado = baix.lancado();
+        this.observacoes = baix.observacoes();
+        this.referencia = baix.referencia();
+        this.meieiro = baix.meieiro();
+        this.porcentagem_produtor = baix.porcentagem_produtor();
+        this.porcentagem_meieiro = baix.porcentagem_meieiro();
+    }
+
+    public void atualizarBaixado(DadosAtualizacaoCafeBaixado baix){
+        if(baix.produtor() != null){
+            this.produtor = baix.produtor();
+        }
+        if(baix.data() != null){
+            this.data = baix.data();
+        }
+        if(baix.catacao() != null){
+            this.catacao = baix.catacao();
+        }
+        if(baix.classificacao() != null){
+            this.classificacao = baix.classificacao();
+        }
+        if(baix.humidade() != null){
+            this.humidade = baix.humidade();
+        }
+        if(baix.lancado() != null){
+            this.lancado = baix.lancado();
+        }
+        if(baix.meieiro() != null){
+            this.meieiro = baix.meieiro();
+        }
+        if(baix.numero_nota() != null) {
+            this.numero_nota = baix.numero_nota();
+        }
+        if(baix.peneira() != null){
+            this.peneira = baix.peneira();
+        }
+        if(baix.observacoes() != null){
+            this.observacoes = baix.observacoes();
+        }
+        if(baix.porcentagem_meieiro() != null){
+            this.porcentagem_meieiro = baix.porcentagem_meieiro();
+        }
+        if(baix.porcentagem_produtor() != null){
+            this.porcentagem_produtor = baix.porcentagem_produtor();
+        }
+    }
 }

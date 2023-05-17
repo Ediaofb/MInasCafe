@@ -1,7 +1,8 @@
 package com.minascafe.api.controllers;
 
 import com.minascafe.api.entities.FichaProdutor;
-import com.minascafe.api.record.DadosFichaProdutor;
+import com.minascafe.api.record.DadosAtualizacaoFichaProdutor;
+import com.minascafe.api.record.DadosCadastroFichaProdutor;
 import com.minascafe.api.repositories.FichaProdutorRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -29,10 +30,17 @@ public class FichaProdutorController {
     FichaProdutor fic = prod.findById(id);
     return ResponseEntity.ok().body(fic);
     }
-
     @PostMapping
     @Transactional //Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
-    public void cadastrar(@RequestBody @Valid DadosFichaProdutor fp){
+    public void cadastrar(@RequestBody @Valid DadosCadastroFichaProdutor fp) {
       prod.save(new FichaProdutor(fp));
+
+    }
+
+    @PutMapping(value ="/{nome}")
+    @Transactional
+    public void atualizar (@RequestBody @Valid DadosAtualizacaoFichaProdutor fb){
+        var produtor = prod.findByNome(fb.nome());
+        produtor.atualizarInformacoes(fb);
     }
 }

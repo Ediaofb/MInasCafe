@@ -1,5 +1,7 @@
 package com.minascafe.api.controllers;
 
+import com.minascafe.api.entities.CafeBaixado;
+import com.minascafe.api.record.DadosAtualizacaoCafeBaixado;
 import com.minascafe.api.record.DadosCadastroCafeBaixado;
 import com.minascafe.api.record.DadosListagemCafeBaixado;
 import com.minascafe.api.repositories.CafeBaixadoRepository;
@@ -19,14 +21,27 @@ public class CafeBaixadoController {
     @Autowired
     private CafeBaixadoRepository cafe_baixado; //Injetando o Repository como sendo um atributo
 
+    @PostMapping
+    @Transactional
+    public void cadastrar(@RequestBody @Valid DadosCadastroCafeBaixado cb){
+        cafe_baixado.save(new CafeBaixado(cb));//Salva um novo objeto entidade JPA do tipo CafeBaixado passando os
+        // parâmetros que vêm do Json da requisição no construtor da Entidade CafeBaixado
+
+        System.out.print("Lote de café em baixado salvo no banco com sucesso!");
+    }
+
     @GetMapping
     public Page<DadosListagemCafeBaixado>Listar(Pageable paginacao){//Devolve uma lista de Café Baixado e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
       return cafe_baixado.findAll(paginacao).map(DadosListagemCafeBaixado::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco. stream() = controle de fluxo de dados. Abstração para expressar operações eficientes do estilo SQL em relação a uma coleção de dados
     }
 
-    @PostMapping
-    @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroCafeBaixado cb){
 
+
+    @PutMapping //Realiza atualizações (Update) no cadastro
+    @Transactional //Para fazer escrita no banco de dados de forma efetiva
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeBaixado caf){
+      var baixado = cafe_baixado.getReferenceById(caf.lote());
+      baixado.atualizarBaixado(caf);
     }
+
 }

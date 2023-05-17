@@ -20,10 +20,10 @@ public record DadosCadastroCafeCoco(
         String status,
         String referencia,
         String subproduto,
-        @NotNull
+        @NotNull(message = "A quantidade de quilos deve ser preenchida, mesmo que seja com '0'")
         int sacos,
         @NotNull
-        @Range(min = 0, max = 45, message = "Acima de 45 quilos, considere adicionar mais 1 saco!")
+        @Range(min = 0, max = 44, message = "Acima de 45 quilos, considere adicionar mais 1 saco!")
         float quilos,
         String observacoes,
         String meieiro,
