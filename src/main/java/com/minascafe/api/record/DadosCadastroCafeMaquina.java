@@ -15,7 +15,7 @@ public record DadosCadastroCafeMaquina(
         int sacas,
         @NotNull(message = "A quantidade de quilos deve ser preenchida, mesmo que seja com '0'!")
         @Range(min = 0, max =59, message = "Acima de 60 quilos, considere adicionar mais 1 saco!")
-        double quilos,
+        float quilos,
         int barracao,
         String subproduto,
         int numero_nota,

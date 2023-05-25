@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,13 @@ public class CafeBeneficiadoController {
     public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
       return cafe_beneficiado.findAll(paginacao).map(DadosListagemCafeBeneficiado::new);
     }
+
+    @GetMapping("/{lote}")
+    public ResponseEntity <CafeBeneficiado> encontrar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+       CafeBeneficiado ben = cafe_beneficiado.findByLote(lote);
+       return ResponseEntity.ok().body(ben);
+    }
+
 
     @PutMapping
     @Transactional

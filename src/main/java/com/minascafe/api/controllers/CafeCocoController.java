@@ -25,7 +25,7 @@ public class CafeCocoController {
     @Autowired
     private CafeCocoRepository cafe_coco; //Injetando o Repository como sendo um atributo
 
-    @PostMapping //
+    @PostMapping //Grava um     registro de Café em Côco
     @Transactional//Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
     public void cadastrar(@RequestBody @Valid DadosCadastroCafeCoco cc){ //RequestBody = Busca do corpo da requisição
         cafe_coco.save(new CafeCoco(cc)); //Salva um novo objeto entidade JPA do tipo CafeCoco passando os
@@ -42,11 +42,9 @@ public class CafeCocoController {
     }
 
     @GetMapping("/{lote}")
-    public ResponseEntity<CafeCoco> ok(@PathVariable("lote") int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
-       CafeCoco cafeCoco = new CafeCoco();
-        return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
-                .body(cafeCoco);
+    public ResponseEntity<CafeCoco> buscar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+       CafeCoco caf = cafe_coco.findByLote(lote);
+        return ResponseEntity.ok().body(caf);
     }
 
     @PutMapping //Realiza atualizações (Update) no cadastro

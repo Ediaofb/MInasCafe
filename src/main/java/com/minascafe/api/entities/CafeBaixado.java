@@ -30,14 +30,14 @@ public class CafeBaixado implements Serializable{
 
     @Id //Chave primária = Spring criará e gerenciará os identificadores únicos da tabela "cad_cafe_coco"
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
-    private int lote;
 
+    private int lote;
     private String produtor;
     private String apelido;
     private String status;
     private LocalDate data;
     private int sacas;
-    private double quilos;
+    private float quilos;
     private int barracao;
     private String subproduto;
     private int numero_nota;

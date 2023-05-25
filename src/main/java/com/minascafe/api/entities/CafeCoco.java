@@ -301,6 +301,9 @@ public class CafeCoco implements Serializable{
         if(da.classificacao() != null){
             this.classificacao = da.classificacao();
         }
+        if(da.humidade() != null){
+            this.humidade = da.humidade();
+        }
         if(da.lancado() != null){
             this.lancado = da.lancado();
         }
@@ -315,6 +318,9 @@ public class CafeCoco implements Serializable{
         }
         if(da.peneira() != null){
             this.peneira = da.peneira();
+        }
+        if(da.subproduto() != null){
+            this.subproduto = da.subproduto();
         }
         if(da.porcentagem_produtor() != null){
             this.porcentagem_produtor = da.porcentagem_produtor();

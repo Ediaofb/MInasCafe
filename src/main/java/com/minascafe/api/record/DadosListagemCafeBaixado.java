@@ -5,7 +5,7 @@ import com.minascafe.api.entities.CafeBaixado;
 import java.time.LocalDate;
 import java.util.Date;
 
-public record DadosListagemCafeBaixado(int lote, String produtor, String status, LocalDate data, int sacos, double quilos,
+public record DadosListagemCafeBaixado(int lote, String produtor, String status, LocalDate data, int sacas, double quilos,
  int barracao, String subproduto, int numero_nota, String classificacao, int catacao, int peneira, String lancado,
  Float humidade, String observacoes, String referencia, String meieiro, int porcentagem_produtor, int porcentagem_meieiro) {
 

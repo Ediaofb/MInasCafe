@@ -28,7 +28,7 @@ public class CafeBeneficiado implements Serializable{
     private String status;
     private LocalDate data;
     private int sacas;
-    private double quilos;
+    private float quilos;
     private Float humidade;
     private int barracao;
     private String subproduto;
@@ -120,7 +120,7 @@ public class CafeBeneficiado implements Serializable{
         return quilos;
     }
 
-    public void setQuilos(double d) {
+    public void setQuilos(float d) {
         this.quilos = d;
     }
 
@@ -250,11 +250,11 @@ public class CafeBeneficiado implements Serializable{
     }
 
     public void atualizarInformacoes(DadosAtualizacaoCafeBeneficiado cb) {
-        if(cb.data() != null){
-            this.data = cb.data();
-        }
         if(cb.produtor() != null){
             this.produtor = cb.produtor();
+        }
+        if(cb.data() != null){
+            this.data = cb.data();
         }
         if(cb.catacao() != null){
             this.catacao = cb.catacao();
@@ -265,11 +265,17 @@ public class CafeBeneficiado implements Serializable{
         if(cb.lancado() != null){
             this.lancado = cb.lancado();
         }
+        if(cb.humidade() != null){
+            this.humidade = cb.humidade();
+        }
         if(cb.meieiro() != null){
             this.meieiro = cb.meieiro();
         }
         if(cb.numero_nota() != null){
             this.numero_nota = cb.numero_nota();
+        }
+        if(cb.subproduto() != null){
+            this.subproduto = cb.subproduto();
         }
         if(cb.observacoes() != null){
             this.observacoes = cb.observacoes();

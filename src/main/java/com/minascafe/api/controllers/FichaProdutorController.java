@@ -30,11 +30,10 @@ public class FichaProdutorController {
     FichaProdutor fic = prod.findById(id);
     return ResponseEntity.ok().body(fic);
     }
-    @PostMapping
+    @PostMapping //Grava um registro no banco
     @Transactional //Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
     public void cadastrar(@RequestBody @Valid DadosCadastroFichaProdutor fp) {
       prod.save(new FichaProdutor(fp));
-
     }
 
     @PutMapping(value ="/{nome}")

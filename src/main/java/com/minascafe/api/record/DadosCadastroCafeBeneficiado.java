@@ -17,7 +17,7 @@ public record DadosCadastroCafeBeneficiado(
         int sacas,
         @NotNull
         @Range(min = 0, max = 59, message = "Acima de 60 quilos, considere adicionar mais 1 saco!")
-        double quilos,
+        float quilos,
         int barracao,
         String subproduto,
         int numero_nota,

@@ -20,13 +20,13 @@ public class CafeMaquina implements Serializable{
     private static final long serialVersionUID = 57352917407981597L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
-    private int lote;
 
+    private int lote;
     private String produtor;
     private String status;
     private Date data;
     private int sacas;
-    private double quilos;
+    private float quilos;
     private int barracao;
     private String subproduto;
     private int numero_nota;
@@ -83,10 +83,9 @@ public class CafeMaquina implements Serializable{
     public double getQuilos() {
         return quilos;
     }
-    public void setQuilos(double d) {
+    public void setQuilos(float d) {
         this.quilos = d;
     }
-
     @Column (name = "barracao", nullable = true)
     public int getBarracao() {
         return barracao;
@@ -183,7 +182,7 @@ public class CafeMaquina implements Serializable{
         this.observacoes = observacoes;
     }
 
-    @PreUpdate //executa o método anotado antes da entidade ser atualizada
+    /*@PreUpdate //executa o método anotado antes da entidade ser atualizada
     public void preUpdate() {
         data = new Date();
     }
@@ -191,7 +190,7 @@ public class CafeMaquina implements Serializable{
     public void prePersist() {
         final Date atual = new Date();
         data = atual;
-    }
+    }*/
 
     @Override
     public String toString() {

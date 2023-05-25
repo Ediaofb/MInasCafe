@@ -18,7 +18,7 @@ public record DadosCadastroCafeBaixado(
         int sacas,
         @NotNull(message = "O campo quilos deve ser preenchido para cadastrar.")
         @Range(min = 0, max = 59, message = "Acima de 59 quilos, considere adicionar mais 1 saco!")
-        double quilos,
+        float quilos,
         int barracao,
         String subproduto,
         int numero_nota,

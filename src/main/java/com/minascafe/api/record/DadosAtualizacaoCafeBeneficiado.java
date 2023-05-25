@@ -12,6 +12,8 @@ public record DadosAtualizacaoCafeBeneficiado(
        Integer catacao,
        String classificacao,
        String lancado,
+       Float humidade,
+       String subproduto,
        String meieiro,
        Integer numero_nota,
        String observacoes,
