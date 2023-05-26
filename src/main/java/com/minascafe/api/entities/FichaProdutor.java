@@ -96,8 +96,8 @@ public class FichaProdutor implements Serializable{
         if(fb.data() != null){
           this.data = fb.data();
         }
-        if(fb.nome() != null){
-          this.nome = fb.nome();
+        if(fb.produtor() != null){
+          this.nome = fb.produtor();
         }
         if(fb.cpf() != null){
             this.cpf = fb.cpf();

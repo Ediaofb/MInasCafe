@@ -8,7 +8,7 @@ public record DadosAtualizacaoFichaProdutor(
         @NotNull
         String lote,
         LocalDate data,
-        String nome,
+        String produtor,
         String cpf,
         String telefone,
         String banco,

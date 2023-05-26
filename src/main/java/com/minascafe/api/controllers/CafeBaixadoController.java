@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +31,16 @@ public class CafeBaixadoController {
         System.out.print("Lote de café em baixado salvo no banco com sucesso!");
     }
 
-    @GetMapping
+    @GetMapping //Lista todos os lotes de cafés que foram dado baixas
     public Page<DadosListagemCafeBaixado>Listar(Pageable paginacao){//Devolve uma lista de Café Baixado e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
       return cafe_baixado.findAll(paginacao).map(DadosListagemCafeBaixado::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco. stream() = controle de fluxo de dados. Abstração para expressar operações eficientes do estilo SQL em relação a uma coleção de dados
     }
 
-
+    @GetMapping("/{lote}")
+    public ResponseEntity<CafeBaixado> buscar(@PathVariable int lote) { //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+        CafeBaixado baix = cafe_baixado.findByLote(lote);
+        return ResponseEntity.ok().body(baix);
+    }
 
     @PutMapping //Realiza atualizações (Update) no cadastro
     @Transactional //Para fazer escrita no banco de dados de forma efetiva

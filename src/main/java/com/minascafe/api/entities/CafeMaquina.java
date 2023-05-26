@@ -201,5 +201,4 @@ public class CafeMaquina implements Serializable{
                 + observacoes + ", meieiro=" + meieiro + ", porcentagem_produtor=" + porcentagem_produtor
                 + ", porcentagem_meieiro=" + porcentagem_meieiro + "]";
     }
-
 }

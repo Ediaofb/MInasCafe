@@ -42,7 +42,7 @@ public class CafeCocoController {
     }
 
     @GetMapping("/{lote}")
-    public ResponseEntity<CafeCoco> buscar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+    public ResponseEntity<CafeCoco> buscar(@PathVariable int lote){ //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
        CafeCoco caf = cafe_coco.findByLote(lote);
         return ResponseEntity.ok().body(caf);
     }
