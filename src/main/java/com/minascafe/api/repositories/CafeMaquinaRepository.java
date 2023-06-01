@@ -11,13 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Integer>{
+public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Integer> {
 
     CafeMaquina findByLote(int Lote);//SELECT * FROM CafeMaquina WHERE Lote = this.Lote
-    CafeMaquina findByProdutor(String Produtor);//SELECT * FROM CafeMaquina WHERE CafeMaquina = this.CafeMaquina
-    Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
-    Page<CafeMaquina> findAllByAtivoFalse(Pageable paginacao);
 
-    @Query("from CafeMaquina c where c.lote = :lote") //Linguagem JPQL - SQL orientado a objetos
-    List<CafeMaquina> findByloteAndAtivoTrue(int lote, boolean ativo); //Consulta de busca por lote ativo de café máquina
+    CafeMaquina findByProdutor(String Produtor);//SELECT * FROM CafeMaquina WHERE CafeMaquina = this.CafeMaquina
+
+    Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
+
+    Page<CafeMaquina> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = false (café máquina baixado)
+    List<CafeMaquina> findByLoteAndAtivoTrue(int lote);
 }
