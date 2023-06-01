@@ -5,12 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public record DadosCadastroCafeMaquina(
         @NotBlank //Verifica se não é nulo e não é vazio =@NotNull + verificação de vazio
         String produtor,
+        String apelido,
+        float humidade,
         String status,
-        Date data,
+        LocalDate data,
         @NotNull(message = "A quantidade de sacas ou sacos deve ser preenchida, mesmo que seja com '0'!")
         int sacas,
         @NotNull(message = "A quantidade de quilos deve ser preenchida, mesmo que seja com '0'!")
@@ -26,6 +29,6 @@ public record DadosCadastroCafeMaquina(
         String observacoes,
         String referencia,
         String meieiro,
-        String porcentagem_produtor,
-        String porcentagem_meieiro) {
+        int porcentagem_produtor,
+        int porcentagem_meieiro) {
 }

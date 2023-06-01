@@ -25,6 +25,7 @@ public class CafeCoco implements Serializable{
     private int lote;
     private String produtor;
     private String apelido;
+    private Boolean ativo;
     private String status;
     private LocalDate data;
     private int sacos;
@@ -47,6 +48,7 @@ public class CafeCoco implements Serializable{
     public CafeCoco(DadosCadastroCafeCoco cc){
         this.produtor = cc.produtor();
         this.apelido = cc.apelido();
+        this.ativo = true;
         this.data = cc.data();
         this.catacao = cc.catacao();
         this.barracao = cc.barracao();
@@ -67,6 +69,10 @@ public class CafeCoco implements Serializable{
     }
 
     public CafeCoco(){
+    }
+
+    public void inativo() {
+     this.ativo = false;
     }
 
     public int getLote() {

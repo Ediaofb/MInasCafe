@@ -2,15 +2,15 @@ package com.minascafe.api.entities;
 //@author Edson Ferreira Barbosa
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
+import com.minascafe.api.record.DadosAtualizacaoCafeMaquina;
+import com.minascafe.api.record.DadosCadastroCafeMaquina;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
@@ -20,13 +20,15 @@ public class CafeMaquina implements Serializable{
     private static final long serialVersionUID = 57352917407981597L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
-
     private int lote;
     private String produtor;
+    private String apelido;
     private String status;
-    private Date data;
+    private boolean ativo;
+    private LocalDate data;
     private int sacas;
     private float quilos;
+    Float humidade;
     private int barracao;
     private String subproduto;
     private int numero_nota;
@@ -39,6 +41,32 @@ public class CafeMaquina implements Serializable{
     private String meieiro;
     private int porcentagem_produtor;
     private int porcentagem_meieiro;
+
+    public CafeMaquina(DadosCadastroCafeMaquina cm){
+        this.produtor = cm.produtor();
+        this.apelido = cm.apelido();
+        this.status = cm.status();
+        this.data = cm.data();
+        this.sacas = cm.sacas();
+        this.quilos = cm.quilos();
+        this.humidade = cm.humidade();
+        this.barracao = cm.barracao();
+        this.subproduto = cm.subproduto();
+        this.numero_nota = cm.numero_nota();
+        this.classificacao = cm.classificacao();
+        this.catacao = cm.catacao();
+        this.peneira = cm.peneira();
+        this.lancado = cm.lancado();
+        this.observacoes = cm.observacoes();
+        this.referencia = cm.referencia();
+        this.meieiro = cm.meieiro();
+        this.porcentagem_produtor = cm.porcentagem_produtor();
+        this.porcentagem_meieiro = cm.porcentagem_meieiro();
+        this.ativo = true;
+    }
+
+    public CafeMaquina(){
+    }
 
     public int getLote() {
         return lote;
@@ -55,6 +83,10 @@ public class CafeMaquina implements Serializable{
         this.produtor = produtor;
     }
 
+    @Column (name = "apelido", nullable = true)
+    public String getApelido(){ return apelido; }
+    public void setApelido(String apelido) { this.apelido = apelido; }
+
     @Column (name = "status", nullable = true)
     public String getStatus() {
         return status;
@@ -64,10 +96,10 @@ public class CafeMaquina implements Serializable{
     }
 
     @Column (name = "data", nullable = false)
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -80,12 +112,17 @@ public class CafeMaquina implements Serializable{
     }
 
     @Column (name = "quilos", nullable = false)
-    public double getQuilos() {
+    public float getQuilos() {
         return quilos;
     }
     public void setQuilos(float d) {
         this.quilos = d;
     }
+
+    @Column (name = "humidade", nullable = false)
+    public Float getHumidade() { return humidade; }
+    public void setHumidade(Float humidade) { this.humidade = humidade; }
+
     @Column (name = "barracao", nullable = true)
     public int getBarracao() {
         return barracao;
@@ -200,5 +237,51 @@ public class CafeMaquina implements Serializable{
                 + ", peneira=" + peneira + ", lancado=" + lancado + ", referencia=" + referencia + ", observacoes="
                 + observacoes + ", meieiro=" + meieiro + ", porcentagem_produtor=" + porcentagem_produtor
                 + ", porcentagem_meieiro=" + porcentagem_meieiro + "]";
+    }
+
+    public void inativo() {
+        this.ativo = false;
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoCafeMaquina cm) {
+        if (cm.produtor() != null){
+            this.produtor = cm.produtor();
+        }
+        if(cm.data() != null){
+            this.data = cm.data();
+        }
+        if(cm.humidade() != null){
+            this.humidade = cm.humidade();
+        }
+        if(cm.subproduto() != null){
+            this.subproduto = cm.subproduto();
+        }
+        if(cm.numero_nota() != null){
+            this.numero_nota = cm.numero_nota();
+        }
+        if(cm.classificacao() != null){
+            this.classificacao = cm.classificacao();
+        }
+        if(cm.catacao() != null){
+            this.catacao = cm.catacao();
+        }
+        if(cm.peneira() != null){
+            this.peneira = cm.peneira();
+        }
+        if(cm.lancado() != null){
+            this.lancado = cm.lancado();
+        }
+        if(cm.meieiro() != null){
+            this.meieiro = cm.meieiro();
+        }
+        if(cm.observacoes() != null){
+            this.observacoes = cm.observacoes();
+        }
+        if(cm.porcentagem_meieiro() != null){
+            this.porcentagem_meieiro = cm.porcentagem_meieiro();
+        }
+        if(cm.porcentagem_produtor() != null){
+            this.porcentagem_produtor = cm.porcentagem_produtor();
+        }
     }
 }

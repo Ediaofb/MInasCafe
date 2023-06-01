@@ -11,22 +11,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController //Endpoint (página web) de Controller
 @RequestMapping("cafecoco") //Define a url da classe
-public class CafeCocoController {
+public class CafeCocoController<id> {
 
     public static final Logger log = LoggerFactory.getLogger(CafeCocoController.class);
 
     @Autowired
     private CafeCocoRepository cafe_coco; //Injetando o Repository como sendo um atributo
 
-    @PostMapping //Grava um     registro de Café em Côco
-    @Transactional//Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
+    @PostMapping //Grava um registro de Café em Côco
+    @Transactional //Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
     public void cadastrar(@RequestBody @Valid DadosCadastroCafeCoco cc){ //RequestBody = Busca do corpo da requisição
         cafe_coco.save(new CafeCoco(cc)); //Salva um novo objeto entidade JPA do tipo CafeCoco passando os
         // parâmetros que vêm do Json da requisição no construtor da Entidade CafeCoco
@@ -36,9 +35,8 @@ public class CafeCocoController {
 
     @GetMapping
     public Page<DadosListagemCafeCoco> listar(Pageable paginacao){//Devolve uma lista de Café em Côco e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
-      return cafe_coco.findAll(paginacao).map(DadosListagemCafeCoco::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco. stream() = controle de fluxo de dados. Abstração para expressar operações eficientes do estilo SQL em relação a uma coleção de dados
-        //.toList() = converte para uma lista
-        // cafe_coco.findAll devolve uma lista de cafe_coco e o retorno do método é uma lista de DadosListagemCafeCoco (é um Dto)
+      return cafe_coco.findAll(paginacao).map(DadosListagemCafeCoco::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco.
+
     }
 
     @GetMapping("/{lote}")
@@ -52,6 +50,14 @@ public class CafeCocoController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeCoco da){
        var cafe = cafe_coco.getReferenceById(da.lote()); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO
        cafe.atualizarInformacoes(da); //Chama os métodos para atualizar os dados baseado no DTO
+    }
+
+    @DeleteMapping("{lote}")
+    @Transactional
+    public void excluir(@PathVariable int lote)
+    {
+        var cafe = cafe_coco.getReferenceById(lote); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO
+        cafe.inativo();
     }
 
     /*@PostMapping

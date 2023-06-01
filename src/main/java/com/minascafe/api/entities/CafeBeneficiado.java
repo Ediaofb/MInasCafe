@@ -25,6 +25,7 @@ public class CafeBeneficiado implements Serializable{
     private int lote;
     private String produtor;
     private String apelido;
+    private boolean ativo;
     private String status;
     private LocalDate data;
     private int sacas;
@@ -45,6 +46,7 @@ public class CafeBeneficiado implements Serializable{
     public CafeBeneficiado(DadosCadastroCafeBeneficiado cb) {
         this.produtor = cb.produtor();
         this.apelido = cb.apelido();
+        this.ativo = true;
         this.data = cb.data();
         this.catacao = cb.catacao();
         this.barracao = cb.barracao();
