@@ -1,5 +1,6 @@
 package com.minascafe.api.controllers;
 
+import com.minascafe.api.dtos.FichaProdutorDto;
 import com.minascafe.api.entities.FichaProdutor;
 import com.minascafe.api.record.DadosAtualizacaoFichaProdutor;
 import com.minascafe.api.record.DadosCadastroFichaProdutor;
@@ -12,6 +13,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController //Endpoint (página web) de Controller
 @RequestMapping(value = "produtor") //Define a url da classe
@@ -45,6 +50,15 @@ public class FichaProdutorController {
     public ResponseEntity<FichaProdutor> retornar(@PathVariable int id){ //PathVariable obtém o conteúdo que vem após a última barra e trata a requisição
       FichaProdutor fic = prod.findById(id);
       return ResponseEntity.ok().body(fic);
+    }
+
+    @GetMapping("/filter") //Realiza busca de ficha produtor filtrando por qualquer quantidade de letras
+    public List<FichaProdutorDto> findFichaByNome(@RequestParam("nome") String nome){
+        System.out.println("name = " + nome);
+        return this.prod.findByNomeContains(nome)
+                .stream()
+                .map(FichaProdutorDto::converter)
+                .collect(Collectors.toList());
     }
 
     @PutMapping //Realiza atualizações (Update) no cadastro

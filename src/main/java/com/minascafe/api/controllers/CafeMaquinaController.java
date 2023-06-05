@@ -35,25 +35,22 @@ public class CafeMaquinaController {
       return cafe_maquina.findAllByAtivoTrue(paginacao).map(DadosListagemCafeMaquina::new); //map = converte entidade cafe_maquina para o objeto DTO
     }
 
-
     @GetMapping("/baixado") //listagem de Café Máquina deletado (inativo)
     public Page<DadosListagemCafeMaquina> Cancelado(Pageable paginacao){
         return cafe_maquina.findAllByAtivoFalse(paginacao).map(DadosListagemCafeMaquina::new);
     }
 
-    /*@GetMapping("/{lote}")
+    /*@GetMapping("/{lote}") //Retorna um lote de café máquina mesmo que tenha sido baixado
     public ResponseEntity<CafeMaquina> localizar(@PathVariable int lote) { //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
         CafeMaquina cam = cafe_maquina.findByLote(lote);
         return ResponseEntity.ok().body(cam);
     }*/
 
-    @GetMapping("/lote") //listagem de lotes de Café Máquina ativos
+    @GetMapping("{lote}") //listagem de lotes de Café Máquina "ativos"
     public ResponseEntity<List<CafeMaquina>> localizar(@PathVariable int lote){
         List<CafeMaquina> cam = cafe_maquina.findByLoteAndAtivoTrue(lote);
         return ResponseEntity.ok().body(cam);
     }
-
-    //@GetMapping("/lote")
 
     @PutMapping //Realiza atualizações (Update) no cadastro
     @Transactional

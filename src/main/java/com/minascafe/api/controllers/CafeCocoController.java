@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController //Endpoint (página web) de Controller
 @RequestMapping("cafecoco") //Define a url da classe
 public class CafeCocoController<id> {
@@ -33,19 +35,23 @@ public class CafeCocoController<id> {
         System.out.print("Lote de café em côco salvo no banco com sucesso!");
     }
 
-    @GetMapping
+    @GetMapping //Listagem de Café em Côco Ativo
     public Page<DadosListagemCafeCoco> listar(Pageable paginacao){//Devolve uma lista de Café em Côco e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
-      return cafe_coco.findAll(paginacao).map(DadosListagemCafeCoco::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco.
-
+      return cafe_coco.findAllByAtivoTrue(paginacao).map(DadosListagemCafeCoco::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco.
     }
 
-    @GetMapping("/{lote}")
-    public ResponseEntity<CafeCoco> buscar(@PathVariable int lote){ //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
-       CafeCoco caf = cafe_coco.findByLote(lote);
+    @GetMapping("/baixado") //listagem de Café em Côco deletado (inativo)
+    public Page<DadosListagemCafeCoco> Cancelado(Pageable paginacao){
+        return cafe_coco.findAllByAtivoFalse(paginacao).map(DadosListagemCafeCoco::new);
+    }
+
+    @GetMapping("/{lote}") //listagem de lotes de café em côco ativos
+    public ResponseEntity<List<CafeCoco>> buscar(@PathVariable int lote){ //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+       List<CafeCoco> caf = cafe_coco.findByLoteAndAtivoTrue(lote);
         return ResponseEntity.ok().body(caf);
     }
 
-    @PutMapping //Realiza atualizações (Update) no cadastro
+    @PutMapping //Realiza atualizações (Update) no cadastros
     @Transactional //Para fazer escrita no banco de dados de forma efetiva
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeCoco da){
        var cafe = cafe_coco.getReferenceById(da.lote()); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO
@@ -54,7 +60,7 @@ public class CafeCocoController<id> {
 
     @DeleteMapping("{lote}")
     @Transactional
-    public void excluir(@PathVariable int lote)
+    public void inativar(@PathVariable int lote)
     {
         var cafe = cafe_coco.getReferenceById(lote); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO
         cafe.inativo();

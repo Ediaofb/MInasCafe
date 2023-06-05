@@ -33,7 +33,7 @@ public class CafeBaixadoController {
 
     @GetMapping //Lista todos os lotes de cafés que foram dado baixas
     public Page<DadosListagemCafeBaixado>Listar(Pageable paginacao){//Devolve uma lista de Café Baixado e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
-      return cafe_baixado.findAll(paginacao).map(DadosListagemCafeBaixado::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco. stream() = controle de fluxo de dados. Abstração para expressar operações eficientes do estilo SQL em relação a uma coleção de dados
+      return cafe_baixado.findAll(paginacao).map(DadosListagemCafeBaixado::new);//map = Mapeamento. Converte uma lista de CafeCoco (Entidade) para uma lista de DadosListagemCafeCoco. stream() = controle de fluxo de dados. Abstração para expressar operações eficientes do estilo SQL em relação a uma coleção de dados
     }
 
     @GetMapping("/{lote}")

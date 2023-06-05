@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 @RestController//Endpoint (página web) de Controller
 @RequestMapping("cafebeneficiado") //Define a url da classe
 public class CafeBeneficiadoController {
@@ -32,17 +34,21 @@ public class CafeBeneficiadoController {
        System.out.println("Lote de café beneficiado salvo no banco com sucesso!");
     }
 
-    @GetMapping
+    @GetMapping //Listagem de Café Beneficiado ativo
     public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
-      return cafe_beneficiado.findAll(paginacao).map(DadosListagemCafeBeneficiado::new);
+      return cafe_beneficiado.findAllByAtivoTrue(paginacao).map(DadosListagemCafeBeneficiado::new);
     }
 
-    @GetMapping("/{lote}")
-    public ResponseEntity <CafeBeneficiado> encontrar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
-       CafeBeneficiado ben = cafe_beneficiado.findByLote(lote);
+    @GetMapping("/baixado") //listagem de Café Beneficiado deletado (inativo)
+    public Page<DadosListagemCafeBeneficiado> Baixa(Pageable paginacao){
+        return cafe_beneficiado.findAllByAtivoFalse(paginacao).map(DadosListagemCafeBeneficiado::new);
+    }
+
+    @GetMapping("/{lote}") //listagem de lotes de Café Beneficiado "ativos"
+    public ResponseEntity <List<CafeBeneficiado>> encontrar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
+       List<CafeBeneficiado> ben = cafe_beneficiado.findByLoteAndAtivoTrue(lote);
        return ResponseEntity.ok().body(ben);
     }
-
 
     @PutMapping
     @Transactional
