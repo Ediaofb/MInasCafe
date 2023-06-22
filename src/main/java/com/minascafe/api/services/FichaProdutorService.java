@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.minascafe.api.entities.FichaProdutor;
 
-public interface FichaProdutorService { //Lógica de negócios da aplicação
+public interface FichaProdutorService { //Lógica de negócios da aplicação - controle, gestão
 
     /**
      * Retorna a ficha de um produtor dado um id

@@ -15,6 +15,7 @@ public class CafeCocoDto {
     private int barracao;
     private String classificacao;
     private String lancado;
+
     private int peneira;
     private float humidade;
     private int numero_nota;

@@ -65,6 +65,5 @@ public class FichaProdutorController {
     @Transactional //Para fazer escrita no banco de dados de forma efetiva
     public void atualizar (@RequestBody @Valid DadosAtualizacaoFichaProdutor fb){
         var produtor = prod.findByNome(fb.produtor());
-        produtor.atualizarInformacoes(fb);
-    }
+        produtor.atualizarInformacoes(fb);    }
 }

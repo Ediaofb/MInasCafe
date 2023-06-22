@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.minascafe.api.entities.CafeCoco;
 
-public interface CafeCocoService { //Lógica de negócios da aplicação
+public interface CafeCocoService { //Lógica de negócios da aplicação - controle, gestão
 
     /**
      * Retorna um Café em Côco dado um lote

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.minascafe.api.entities.CafeMaquina;
 
-public interface CafeMaquinaService { //Lógica de negócios da aplicação
+public interface CafeMaquinaService { //Lógica de negócios da aplicação - controle, gestão
 
     /**
      * Retorna um Café que foi beneficiado no armazém dado um lote

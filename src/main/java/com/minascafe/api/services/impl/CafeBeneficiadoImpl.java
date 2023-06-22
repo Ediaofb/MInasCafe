@@ -32,9 +32,9 @@ public class CafeBeneficiadoImpl implements CafeBeneficiadoService {
     }
 
     @Override
-    public Optional<CafeBeneficiado> buscarPorProdutor(String Produtor){
-        log.info("Buscando um café beneficiado pelo produtor: {}", Produtor);
-        return Optional.ofNullable(cafe_BeneficiadoRepository.findByProdutor(Produtor));
+    public Optional<CafeBeneficiado> buscarPorProdutor(String produtor){
+        log.info("Buscando um café beneficiado pelo produtor: {}", produtor);
+        return Optional.ofNullable(cafe_BeneficiadoRepository.findByProdutor(produtor));
     }
 
     @Override

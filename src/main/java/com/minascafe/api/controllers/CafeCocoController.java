@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController //Endpoint (página web) de Controller
 @RequestMapping("cafecoco") //Define a url da classe
-public class CafeCocoController<id> {
+public class CafeCocoController {
 
     public static final Logger log = LoggerFactory.getLogger(CafeCocoController.class);
 

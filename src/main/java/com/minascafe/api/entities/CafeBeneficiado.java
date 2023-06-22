@@ -292,4 +292,9 @@ public class CafeBeneficiado implements Serializable{
             this.porcentagem_meieiro = cb.porcentagem_meieiro();
         }
     }
+
+    public void subtrairSacasQuilosBeneficiado(int sacas, float quilos){
+       this.sacas -= sacas;
+       this.quilos -= quilos;
+    }
 }
