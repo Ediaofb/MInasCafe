@@ -3,6 +3,7 @@ package com.minascafe.api.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 import com.minascafe.api.record.DadosAtualizacaoCafeMaquina;
 import com.minascafe.api.record.DadosCadastroCafeMaquina;
 import jakarta.persistence.Column;
@@ -282,10 +283,5 @@ public class CafeMaquina implements Serializable{
         if(cm.porcentagem_produtor() != null){
             this.porcentagem_produtor = cm.porcentagem_produtor();
         }
-    }
-
-    public void subtrairSacasQuilosMaquina(int sacas, float quilos){
-       this.sacas -= sacas;
-       this.quilos -= quilos;
     }
 }

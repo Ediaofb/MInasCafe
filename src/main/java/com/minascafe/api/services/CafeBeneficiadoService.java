@@ -5,7 +5,7 @@ import com.minascafe.api.entities.CafeBeneficiado;
 
 import java.util.Optional;
 
-public interface CafeBeneficiadoService { //Lógica de negócios da aplicação - controle, gestão
+public interface CafeBeneficiadoService { //Lógica de negócios da aplicação
 
     /**
      * Retorna um CafeBeneficiado dado um lote
@@ -23,7 +23,7 @@ public interface CafeBeneficiadoService { //Lógica de negócios da aplicação 
      * @return cafe_Beneficiado
      * @author Edson
      */
-    Optional <CafeBeneficiado> buscarPorProdutor(String produtor);
+    Optional <CafeBeneficiado> buscarPorProdutor(String Produtor);
 
     /**
      * Cadastra um Café Beneficiado na base de dados
