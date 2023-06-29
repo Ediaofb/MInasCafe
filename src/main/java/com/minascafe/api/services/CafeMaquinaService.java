@@ -26,10 +26,10 @@ public interface CafeMaquinaService { //Lógica de negócios da aplicação
     Optional<CafeMaquina> buscarPorProdutor(String Produtor);
 
     /**
-     * Cadastra um Café beneficiado na base de dados
+     * Cadastra um Café máquina na base de dados
      *
-     * @param cafe_beneficiado
-     * @return cafe_beneficiado
+     * @param cafe_Maquina
+     * @return cafe_maquina
      * @author Edson
      */
     CafeMaquina persistir(CafeMaquina cafe_Maquina);
@@ -37,7 +37,7 @@ public interface CafeMaquinaService { //Lógica de negócios da aplicação
     /**
      * Remove um café beneficiado da base de dados
      *
-     * @param id
+     * @param lote
      */
     void remover(int lote);
 }

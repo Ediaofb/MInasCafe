@@ -19,7 +19,7 @@ public interface CafeBeneficiadoService { //Lógica de negócios da aplicação
     /**
      * Retorna um Café Beneficiado dado um produtor
      *
-     * @param produtor
+     * @param Produtor
      * @return cafe_Beneficiado
      * @author Edson
      */

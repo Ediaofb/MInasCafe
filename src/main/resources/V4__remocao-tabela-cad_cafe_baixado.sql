@@ -1,0 +1,1 @@
+DROP TABLE cad_cafe_baixado;
