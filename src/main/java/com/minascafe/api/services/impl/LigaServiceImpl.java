@@ -1,12 +1,19 @@
 package com.minascafe.api.services.impl;
 
+import com.minascafe.api.entities.CafeBeneficiado;
+import com.minascafe.api.entities.CafeMaquina;
 import com.minascafe.api.entities.Liga;
+import com.minascafe.api.record.DadosCadastroLiga;
+import com.minascafe.api.repositories.CafeBeneficiadoRepository;
+import com.minascafe.api.repositories.CafeMaquinaRepository;
 import com.minascafe.api.repositories.LigaRepository;
 import com.minascafe.api.services.LigaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -15,6 +22,13 @@ public class LigaServiceImpl implements LigaService {
 
     private static final Logger log = LoggerFactory.getLogger(LigaServiceImpl.class); //Declarando o log = "descreve eventos do funcionamento do sistema".
     private final LigaRepository ligaRepository;
+
+    @Autowired
+    CafeMaquina cafeMaquina;
+    @Autowired
+    CafeMaquinaRepository cafeMaquinaRepository;
+    @Autowired
+    CafeBeneficiadoRepository cafeBeneficiadoRepository;
 
     public LigaServiceImpl(LigaRepository ligaRepository) {
         this.ligaRepository = ligaRepository;
@@ -48,5 +62,38 @@ public class LigaServiceImpl implements LigaService {
     public void remover (int id){
         log.info("Removendo a liga de id: {}", id);
         this.ligaRepository.deleteById(id);
+    }
+
+    @Override
+    public Liga criarLiga(DadosCadastroLiga dadosLiga){
+      Liga liga = new Liga(dadosLiga);
+      return persistir(liga);
+    }
+
+    public void removerLotesCafeMaquina(List<String> lotes){
+        for(String lote : lotes){
+            // Remove os caracteres "M" e "-"
+            String loteSemPrefixo = lote.replaceAll("[M-]", "");
+
+            //Converte para inteiro
+            int loteInt = Integer.parseInt(loteSemPrefixo);
+
+            // Remove o lote de CafeMaquina pelo ID
+            Optional<CafeMaquina> cafeMaquina = Optional.ofNullable(cafeMaquinaRepository.findByLote(loteInt));
+            cafeMaquina.ifPresent(cafeMaquinaRepository::delete);
+        }
+    }
+
+    public void removerLotesCafeBeneficiado(List<String> lotes){
+        for (String lote : lotes){
+            //Remove os caracteres "E" e "-"
+            String loteSemPrefixo = lote.replaceAll("[E-]", "");
+            //Converte a String para inteiro
+            int loteInt = Integer.parseInt(loteSemPrefixo);
+
+            //Remove o lote de CafeBeneficiado por Id
+            Optional <CafeBeneficiado> cafeBeneficiado = Optional.ofNullable(cafeBeneficiadoRepository.findByLote(loteInt));
+            cafeBeneficiado.ifPresent(cafeBeneficiadoRepository::delete);
+        }
     }
 }

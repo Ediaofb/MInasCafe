@@ -12,9 +12,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.stereotype.Component;
 
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
 @Table(name = "cad_cafe_maquina") //Define o nome da tabela no banco em que a entity representa (em caso de não ser o mesmo nome da Entity)
+@Component //Cria instância da classe
 public class CafeMaquina implements Serializable{
 
     private static final long serialVersionUID = 57352917407981597L;
@@ -283,5 +285,10 @@ public class CafeMaquina implements Serializable{
         if(cm.porcentagem_produtor() != null){
             this.porcentagem_produtor = cm.porcentagem_produtor();
         }
+    }
+
+    public void subtrairSacasQuilos(int sacas, float quilos) { //subtrai sacas e quilos utilizados em uma liga
+       this.sacas -= sacas;
+       this.quilos -= quilos;
     }
 }

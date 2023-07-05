@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController //Endpoint (página web) de Controller
@@ -42,16 +41,16 @@ public class CafeCocoController {
 
     @GetMapping("/baixado") //listagem de Café em Côco deletado (inativo)
     public Page<DadosListagemCafeCoco> Cancelado(Pageable paginacao){
-        return cafe_coco.findAllByAtivoFalse(paginacao).map(DadosListagemCafeCoco::new);
+       return cafe_coco.findAllByAtivoFalse(paginacao).map(DadosListagemCafeCoco::new);
     }
 
     @GetMapping("/{lote}") //listagem de lotes de café em côco ativos
     public ResponseEntity<List<CafeCoco>> buscar(@PathVariable int lote){ //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
        List<CafeCoco> caf = cafe_coco.findByLoteAndAtivoTrue(lote);
-        return ResponseEntity.ok().body(caf);
+       return ResponseEntity.ok().body(caf);
     }
 
-    @PutMapping //Realiza atualizações (Update) no cadastros
+    @PutMapping //Realiza atualizações (Update) no cadastro
     @Transactional //Para fazer escrita no banco de dados de forma efetiva
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeCoco da){
        var cafe = cafe_coco.getReferenceById(da.lote()); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO

@@ -118,7 +118,7 @@ public class CafeBeneficiado implements Serializable{
     }
 
     @Column (name = "quilos", nullable = true)
-    public double getQuilos() {
+    public float getQuilos() {
         return quilos;
     }
 
@@ -291,5 +291,10 @@ public class CafeBeneficiado implements Serializable{
         if (cb.porcentagem_meieiro() != null){
             this.porcentagem_meieiro = cb.porcentagem_meieiro();
         }
+    }
+
+    public void subtrairSacasQuilos(int sacas, float quilos) { //subtrai sacas e quilos utilizados em uma liga
+        this.sacas -= sacas;
+        this.quilos -= quilos;
     }
 }

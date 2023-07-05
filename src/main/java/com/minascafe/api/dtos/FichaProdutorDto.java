@@ -310,5 +310,4 @@ public class FichaProdutorDto {
                 ", preco=" + preco +
                 '}';
     }
-
 }

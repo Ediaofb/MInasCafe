@@ -1,7 +1,6 @@
 package com.minascafe.api.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.minascafe.api.record.DadosAtualizacaoLiga;
 import com.minascafe.api.record.DadosCadastroLiga;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -40,5 +39,35 @@ public class Liga implements Serializable {
         this.somatorio_sacas = lig.somatorio_sacas();
         this.somatorio_quilos = lig.somatorio_quilos();
         this.nomeliga = lig.nomeliga();
+    }
+
+    public void atualizarLiga(DadosAtualizacaoLiga dal){
+        if (!dal.lotesVazio()){ //Se não estiver vazio ou nulo
+            this.lotes = dal.lotes(); //atualiza
+        }
+        if(dal.somatorio_lotes() != null){
+            this.somatorio_lotes = dal.somatorio_lotes();
+        }
+        if(dal.somatorio_quilos() != null){
+            this.somatorio_quilos = dal.somatorio_quilos();
+        }
+        if(dal.somatorio_sacas() != null){
+            this.somatorio_sacas = dal.somatorio_sacas();
+        }
+        if(dal.nomeliga() != null){
+            this.nomeliga = dal.nomeliga();
+        }
+    }
+
+    public void receberLotesCafeBeneficiado(List<CafeBeneficiado> lotes){
+        for (CafeBeneficiado cafebeneficiado : lotes){
+            cafebeneficiado.subtrairSacasQuilos(cafebeneficiado.getSacas(), cafebeneficiado.getQuilos());
+        }
+    }
+
+    public void receberLotesCafeMaquina(List<CafeMaquina> lotes){
+        for (CafeMaquina cafeMaquina : lotes){
+            cafeMaquina.subtrairSacasQuilos(cafeMaquina.getSacas(), cafeMaquina.getQuilos());
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.minascafe.api.entities.CafeCoco;
 import com.minascafe.api.entities.Liga;
 import com.minascafe.api.record.DadosCadastroLiga;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface LigaService {
@@ -50,4 +51,24 @@ public interface LigaService {
      * @param id
      */
     void remover(int id);
+
+    /**
+     * Cria uma liga classe liga
+     * @param dadosLiga
+     * @return Liga
+     */
+    Liga criarLiga(DadosCadastroLiga dadosLiga);
+
+    /**
+     * Deleta um lote de Café Máquina que foi inserido na Liga
+     * @param lotes
+     */
+    void removerLotesCafeMaquina(List<String> lotes);
+
+    /**
+     * Deleta um lote de Café Beneficiado que foi inserido na Liga
+     *
+     * @param lotes
+     */
+    void removerLotesCafeBeneficiado(List<String> lotes);
 }

@@ -3,7 +3,7 @@ package com.minascafe.api.record;
 import com.minascafe.api.entities.CafeBeneficiado;
 import java.time.LocalDate;
 
-public record DadosListagemCafeBeneficiado(int lote, String produtor, String status, LocalDate data, int sacas, double quilos,
+public record DadosListagemCafeBeneficiado(int lote, String produtor, String status, LocalDate data, int sacas, float quilos,
  int barracao, String subproduto, int numero_nota, String classificacao, int catacao, int peneira, String lancado,
  String observacoes, String referencia, String meieiro, int porcentagem_produtor, int porcentagem_meieiro) {
 

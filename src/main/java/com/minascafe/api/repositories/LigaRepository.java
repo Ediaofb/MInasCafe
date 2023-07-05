@@ -4,6 +4,8 @@ import com.minascafe.api.entities.Liga;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface LigaRepository extends JpaRepository<Liga, Integer> {//é um objeto que se torna uma ponte entre o banco de dados e a entidade
@@ -14,6 +16,9 @@ public interface LigaRepository extends JpaRepository<Liga, Integer> {//é um ob
     Liga findById(int Id); // SELECT * FROM Liga WHERE Id = this.Id
 
     Liga findByNomeliga(String nomeliga);
+    List<Liga> findAll();
+
+    Liga findBydata(LocalDate data);
 
     /*@Query("Select li FROM Liga li WHERE li.lotes IN (:lote)")
     List<Liga> buscarPorLote(String lote);*/
