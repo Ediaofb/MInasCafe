@@ -24,11 +24,13 @@ public class LigaServiceImpl implements LigaService {
     private final LigaRepository ligaRepository;
 
     @Autowired
+    Liga liga;
+    @Autowired
     CafeMaquina cafeMaquina;
     @Autowired
-    CafeMaquinaRepository cafeMaquinaRepository;
+    CafeMaquinaRepository cmr;
     @Autowired
-    CafeBeneficiadoRepository cafeBeneficiadoRepository;
+    CafeBeneficiadoRepository cbr;
 
     public LigaServiceImpl(LigaRepository ligaRepository) {
         this.ligaRepository = ligaRepository;
@@ -70,6 +72,37 @@ public class LigaServiceImpl implements LigaService {
       return persistir(liga);
     }
 
+    public void marcarLotesComoInativos(String lote){
+        //Verificar se o lote começa com "E-" (Café Beneficiado)
+        if (lote.startsWith("M-")) { //Se o lote inicia com "M-"
+            String loteSemPrefixo = lote.replaceAll("[M-]", "");//Remove "M-" do lote
+            int loteInt = Integer.parseInt(loteSemPrefixo); //Converte o lote para inteiro
+
+            CafeMaquina cafeMaquina = cmr.findByLote(loteInt); //Busca um Café Máquina pelo lote
+            if (cafeMaquina != null){
+                cafeMaquina.inativar();
+                String observacoes = cafeMaquina.getObservacoes();
+                observacoes += "Lote utilizado na liga: " + liga.getId() + ".";
+                cafeMaquina.setObservacoes(observacoes);
+                cmr.save(cafeMaquina);
+            }
+        }
+        //verificar se o lote começa com "M-" (Café Máquina)
+        else if (lote.startsWith("E-")) {
+            String loteSemPrefixo = lote.replaceAll("[E-]", "");//Remove "E-" do lote
+            int loteInt = Integer.parseInt(loteSemPrefixo); //Converte o lote para inteiro
+
+            CafeBeneficiado cafeBeneficiado = cbr.findByLote(loteInt); //Busca um Café Beneficiado pelo lote
+            if (cafeBeneficiado != null){
+                cafeBeneficiado.inativar();
+                String observacoes = cafeBeneficiado.getObservacoes();
+                observacoes += "Lote utilizado na liga: " + liga.getId() + ".";
+                cafeBeneficiado.setObservacoes(observacoes);
+                cbr.save(cafeBeneficiado);
+            }
+        }
+    }
+
     public void removerLotesCafeMaquina(List<String> lotes){
         for(String lote : lotes){
             // Remove os caracteres "M" e "-"
@@ -79,8 +112,8 @@ public class LigaServiceImpl implements LigaService {
             int loteInt = Integer.parseInt(loteSemPrefixo);
 
             // Remove o lote de CafeMaquina pelo ID
-            Optional<CafeMaquina> cafeMaquina = Optional.ofNullable(cafeMaquinaRepository.findByLote(loteInt));
-            cafeMaquina.ifPresent(cafeMaquinaRepository::delete);
+            Optional<CafeMaquina> cafeMaquina = Optional.ofNullable(cmr.findByLote(loteInt));
+            cafeMaquina.ifPresent(cmr::delete);
         }
     }
 
@@ -92,8 +125,8 @@ public class LigaServiceImpl implements LigaService {
             int loteInt = Integer.parseInt(loteSemPrefixo);
 
             //Remove o lote de CafeBeneficiado por Id
-            Optional <CafeBeneficiado> cafeBeneficiado = Optional.ofNullable(cafeBeneficiadoRepository.findByLote(loteInt));
-            cafeBeneficiado.ifPresent(cafeBeneficiadoRepository::delete);
+            Optional <CafeBeneficiado> cafeBeneficiado = Optional.ofNullable(cbr.findByLote(loteInt));
+            cafeBeneficiado.ifPresent(cbr::delete);
         }
     }
 }

@@ -64,6 +64,6 @@ public class CafeMaquinaController {
     public void inativar(@PathVariable int lote)
     {
         var maq = cafe_maquina.getReferenceById(lote);
-        maq.inativo();
+        maq.inativar();
     }
 }

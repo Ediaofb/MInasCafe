@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface LigaRepository extends JpaRepository<Liga, Integer> {//é um objeto que se torna uma ponte entre o banco de dados e a entidade

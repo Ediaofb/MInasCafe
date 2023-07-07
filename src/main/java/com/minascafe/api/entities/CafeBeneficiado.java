@@ -14,7 +14,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
 @Table(name = "cad_cafe_beneficiado") //Define o nome da tabela no banco em que a entity representa (em caso de não ser o mesmo nome da Entity)
 public class CafeBeneficiado implements Serializable{
@@ -244,11 +250,33 @@ public class CafeBeneficiado implements Serializable{
     }*/
 
     @Override
-    public String toString() { //retorna uma representação string de um objeto
-        return "CafeBeneficiado [lote=" + lote + ", produtor=" + produtor + ", status=" + status + ", data=" + data
-                + ", sacas=" + sacas + ", quilos=" + quilos + ", barracao=" + barracao + ", subproduto=" + subproduto
-                + ", numero_nota=" + numero_nota + ", classificacao=" + classificacao + ", catacao=" + catacao
-                + ", peneira=" + peneira + ", lancado=" + lancado + ", observacoes=" + observacoes + "]";
+    public String toString() {
+        return "CafeBeneficiado{" +
+                "lote=" + lote +
+                ", produtor='" + produtor + '\'' +
+                ", apelido='" + apelido + '\'' +
+                ", ativo=" + ativo +
+                ", status='" + status + '\'' +
+                ", data=" + data +
+                ", sacas=" + sacas +
+                ", quilos=" + quilos +
+                ", humidade=" + humidade +
+                ", barracao=" + barracao +
+                ", subproduto='" + subproduto + '\'' +
+                ", numero_nota=" + numero_nota +
+                ", classificacao='" + classificacao + '\'' +
+                ", catacao=" + catacao +
+                ", peneira=" + peneira +
+                ", lancado='" + lancado + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", meieiro='" + meieiro + '\'' +
+                ", porcentagem_produtor=" + porcentagem_produtor +
+                ", porcentagem_meieiro=" + porcentagem_meieiro +
+                '}';
+    }
+
+    public void inativar() {
+        this.ativo = false;
     }
 
     public void atualizarInformacoes(DadosAtualizacaoCafeBeneficiado cb) {

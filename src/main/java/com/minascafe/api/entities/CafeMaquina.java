@@ -241,7 +241,7 @@ public class CafeMaquina implements Serializable{
                 + ", porcentagem_meieiro=" + porcentagem_meieiro + "]";
     }
 
-    public void inativo() {
+    public void inativar() {
         this.ativo = false;
     }
 

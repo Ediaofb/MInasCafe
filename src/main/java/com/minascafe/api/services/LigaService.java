@@ -1,13 +1,17 @@
 package com.minascafe.api.services;
 
 import com.minascafe.api.entities.CafeCoco;
+import com.minascafe.api.entities.CafeMaquina;
 import com.minascafe.api.entities.Liga;
 import com.minascafe.api.record.DadosCadastroLiga;
+import com.minascafe.api.repositories.CafeBeneficiadoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface LigaService {
+
 
     /**
      * Retorna uma liga dado um lote
@@ -60,15 +64,10 @@ public interface LigaService {
     Liga criarLiga(DadosCadastroLiga dadosLiga);
 
     /**
-     * Deleta um lote de Café Máquina que foi inserido na Liga
-     * @param lotes
-     */
-    void removerLotesCafeMaquina(List<String> lotes);
-
-    /**
-     * Deleta um lote de Café Beneficiado que foi inserido na Liga
+     * Setta lotes como inativos após serem utilizados para compor uma liga
+     * @param lote
      *
-     * @param lotes
      */
-    void removerLotesCafeBeneficiado(List<String> lotes);
+    void marcarLotesComoInativos(String lote);
+
 }

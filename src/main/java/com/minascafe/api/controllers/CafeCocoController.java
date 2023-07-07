@@ -20,8 +20,8 @@ import java.util.List;
 @RequestMapping("cafecoco") //Define a url da classe
 public class CafeCocoController {
 
-    public static final Logger log = LoggerFactory.getLogger(CafeCocoController.class);
-
+    public static final Logger log = LoggerFactory.getLogger(CafeCocoController.class);//O log pode ser útil para acompanhar o fluxo de execução, identificar problemas e analisar o comportamento do aplicativo.
+    //Através do logger, é possível registrar informações, avisos, erros e outras mensagens relevantes durante a execução do código.
     @Autowired
     private CafeCocoRepository cafe_coco; //Injetando o Repository como sendo um atributo
 

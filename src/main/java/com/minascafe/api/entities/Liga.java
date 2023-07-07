@@ -6,12 +6,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
 @Table(name = "liga") //Define o nome da tabela no banco em que a entity representa (em caso de não ser o mesmo nome da Entity)
+@Component //Cria instância da classe
 @Getter //Gera os métodos getters
 @Setter //Gera os métodos setters
 @ToString //Mostra os atributos da classe
@@ -19,7 +22,8 @@ import java.util.List;
 public class Liga implements Serializable {
 
     @Id //Chave primária = Spring criará e gerenciará os identificadores únicos da tabela "cad_cafe_coco"
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "liga_seq")
+    @SequenceGenerator(name = "liga_seq", sequenceName = "liga_sequence", allocationSize = 1)//nome da sequencia no banco de dados. allocatioSize - define o tamanho do incremento.
     private int id;
     private LocalDate data;
     @ElementCollection
