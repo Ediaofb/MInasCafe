@@ -1,6 +1,7 @@
 package com.minascafe.api.services;
 //@author Edson Ferreira Barbosa
 
+import java.util.List;
 import java.util.Optional;
 
 import com.minascafe.api.entities.CafeMaquina;
@@ -23,7 +24,7 @@ public interface CafeMaquinaService { //Lógica de negócios da aplicação
      * @return CafeMaquina
      * @author Edson
      */
-    Optional<CafeMaquina> buscarPorProdutor(String Produtor);
+    Optional<List<CafeMaquina>> buscarPorProdutor(String Produtor);
 
     /**
      * Cadastra um Café máquina na base de dados

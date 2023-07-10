@@ -1,6 +1,7 @@
 package com.minascafe.api.services.impl;
 //@author Edson Ferreira Barbosa
 
+import java.util.List;
 import java.util.Optional;
 
 import com.minascafe.api.entities.CafeBeneficiado;
@@ -32,7 +33,7 @@ public class CafeBeneficiadoImpl implements CafeBeneficiadoService {
     }
 
     @Override
-    public Optional<CafeBeneficiado> buscarPorProdutor(String Produtor){
+    public Optional<List<CafeBeneficiado>> buscarPorProdutor(String Produtor){
         log.info("Buscando um café beneficiado pelo produtor: {}", Produtor);
         return Optional.ofNullable(cafe_BeneficiadoRepository.findByProdutor(Produtor));
     }

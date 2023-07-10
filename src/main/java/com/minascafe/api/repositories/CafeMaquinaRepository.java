@@ -15,7 +15,7 @@ public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Intege
 
     CafeMaquina findByLote(int Lote);//SELECT * FROM CafeMaquina WHERE Lote = this.Lote
 
-    CafeMaquina findByProdutor(String Produtor);//SELECT * FROM CafeMaquina WHERE CafeMaquina = this.CafeMaquina
+    List<CafeMaquina> findByProdutor(String Produtor);//SELECT * FROM CafeMaquina WHERE CafeMaquina = this.CafeMaquina
 
     Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
 

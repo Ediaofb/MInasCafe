@@ -40,11 +40,12 @@ public class CafeMaquinaController {
         return cafe_maquina.findAllByAtivoFalse(paginacao).map(DadosListagemCafeMaquina::new);
     }
 
-    /*@GetMapping("/{lote}") //Retorna um lote de café máquina mesmo que tenha sido baixado
-    public ResponseEntity<CafeMaquina> localizar(@PathVariable int lote) { //No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
-        CafeMaquina cam = cafe_maquina.findByLote(lote);
-        return ResponseEntity.ok().body(cam);
-    }*/
+    @GetMapping("/produtor/{produtor}")
+    public ResponseEntity <List<CafeMaquina>> buscaCafeMaquina(@PathVariable String produtor){
+        List<CafeMaquina> maq = cafe_maquina.findByProdutor(produtor);
+        return ResponseEntity.ok().body(maq);
+    }
+
 
     @GetMapping("{lote}") //listagem de lotes de Café Máquina "ativos"
     public ResponseEntity<List<CafeMaquina>> localizar(@PathVariable int lote){

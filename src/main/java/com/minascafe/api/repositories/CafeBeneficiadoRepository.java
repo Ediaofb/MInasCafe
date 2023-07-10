@@ -14,7 +14,7 @@ import java.util.List;
 public interface CafeBeneficiadoRepository extends JpaRepository<CafeBeneficiado, Integer>{
 
     CafeBeneficiado findByLote(int Lote);//SELECT * FROM CafeBeneficiado WHERE Lote = this.Lote
-    CafeBeneficiado findByProdutor(String produtor); //SELECT * FROM CafeBeneficiado WHERE Produtor = produtor
+    List<CafeBeneficiado> findByProdutor(String produtor); //SELECT * FROM CafeBeneficiado WHERE Produtor = produtor
     Page<CafeBeneficiado> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeBeneficiado WHERE ativo = true
     Page<CafeBeneficiado> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeBeneficiado WHERE ativo = false (café benefiado "baixado")
     List<CafeBeneficiado> findByLoteAndAtivoTrue(int lote); // Consulta por lotes ativos - SELECT * FROM CafeBeneficiado c WHERE c.lote = lote AND ativo = true

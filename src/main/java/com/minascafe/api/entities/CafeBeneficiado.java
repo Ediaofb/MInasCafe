@@ -17,12 +17,14 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @Entity //A classe é também uma entidade, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados onde os dados de objetos desse tipo poderão ser persistidos
 @Table(name = "cad_cafe_beneficiado") //Define o nome da tabela no banco em que a entity representa (em caso de não ser o mesmo nome da Entity)
+@Component
 public class CafeBeneficiado implements Serializable{
 
     private static final long serialVersionUID = 5255241255596615186L;

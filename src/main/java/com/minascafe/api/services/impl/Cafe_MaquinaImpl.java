@@ -1,6 +1,7 @@
 package com.minascafe.api.services.impl;
 //@author Edson Ferreira Barbosa
 
+import java.util.List;
 import java.util.Optional;
 
 import com.minascafe.api.entities.CafeMaquina;
@@ -26,7 +27,7 @@ public class Cafe_MaquinaImpl implements CafeMaquinaService {
     }
 
     @Override
-    public Optional<CafeMaquina> buscarPorProdutor(String Produtor){
+    public Optional<List<CafeMaquina>> buscarPorProdutor(String Produtor){
         log.info("Buscando um café do produtor {}, que foi beneficiado no armazém (M)", Produtor);
         return Optional.ofNullable(cafe_MaquinaRepository.findByProdutor(Produtor));
     }
