@@ -72,6 +72,24 @@ public class LigaServiceImpl implements LigaService {
       return persistir(liga);
     }
 
+    public boolean verificaLoteCM(String lote){ //Verifica se o lote é de Café Máquina
+        boolean flagCM;
+        flagCM = lote.contains("M");
+        return flagCM;
+    }
+
+    public boolean verificaLoteCB(String lote){ //Verifica se o lote é de Café Beneficiado
+        boolean flagCB;
+        flagCB = lote.contains("E");
+        return flagCB;
+    }
+
+    String retornaLoteSemPrefixo(String lote){
+        if (lote.startsWith("M-")) {
+            String lot = lote.replaceAll("[M-]", "");
+        }
+        return lote;
+    }
     public void marcarLotesComoInativos(String lote){
         //Verificar se o lote começa com "E-" (Café Beneficiado)
         if (lote.startsWith("M-")) { //Se o lote inicia com "M-"
@@ -89,7 +107,7 @@ public class LigaServiceImpl implements LigaService {
         }
         //verificar se o lote começa com "M-" (Café Máquina)
         else if (lote.startsWith("E-")) {
-            String loteSemPrefixo = lote.replaceAll("[E-]", "");//Remove "E-" do lote
+            String loteSemPrefixo = lote.replaceAll("[E-]", ""); //Remove "E-" do lote
             int loteInt = Integer.parseInt(loteSemPrefixo); //Converte o lote para inteiro
 
             CafeBeneficiado cafeBeneficiado = cbr.findByLote(loteInt); //Busca um Café Beneficiado pelo lote

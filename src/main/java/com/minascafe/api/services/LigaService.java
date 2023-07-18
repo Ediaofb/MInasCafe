@@ -12,7 +12,6 @@ import java.util.Optional;
 
 public interface LigaService {
 
-
     /**
      * Retorna uma liga dado um lote
      *
@@ -69,5 +68,12 @@ public interface LigaService {
      *
      */
     void marcarLotesComoInativos(String lote);
+
+    /**
+     * Verifica se um lote é de Café Máquina
+     * @param lote
+     * @return boolean
+     */
+     boolean verificaLoteCM(String lote);
 
 }
