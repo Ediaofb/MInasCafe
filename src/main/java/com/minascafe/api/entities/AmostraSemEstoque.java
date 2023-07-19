@@ -29,6 +29,9 @@ public class AmostraSemEstoque implements Serializable {
     private Float humidade;
     private String observacoes;
 
+    public AmostraSemEstoque(){
+    }
+
     public AmostraSemEstoque(DadosCadastroAmostraSemEstoque dcase){
       this.produtor = dcase.produtor();
       this.apelido = dcase.apelido();

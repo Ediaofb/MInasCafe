@@ -55,7 +55,7 @@ public class CafeBeneficiadoController {
 
     @GetMapping("/produtor/{produtor}")
     public ResponseEntity <List<CafeBeneficiado>> busca_produtor(@PathVariable String produtor){
-        List<CafeBeneficiado> caf  = cafeBeneficiadoRepository.findByProdutor(produtor);
+        List<CafeBeneficiado> caf = cafeBeneficiadoRepository.findByProdutor(produtor);
         return ResponseEntity.ok().body(caf);
     }
 
