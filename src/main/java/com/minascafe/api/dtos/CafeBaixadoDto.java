@@ -1,7 +1,6 @@
 package com.minascafe.api.dtos;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CafeBaixadoDto {//Faz a conversão entre o que o usuário envia e a aplicação
 

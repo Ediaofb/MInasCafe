@@ -15,9 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController //Endpoint (página web) de Controller
 @RequestMapping("cafecoco") //Define a url da classe
+@CrossOrigin(origins = "http://localhost:3000") //Permitindo a requisição do endereço e porta do frontend
 public class CafeCocoController {
 
     public static final Logger log = LoggerFactory.getLogger(CafeCocoController.class);//O log pode ser útil para acompanhar o fluxo de execução, identificar problemas e analisar o comportamento do aplicativo.

@@ -12,18 +12,4 @@ public class MinasCafeApplication {
         SpringApplication.run(MinasCafeApplication.class, args);
 
     }
-
-
-    //gera um componente do Spring
-
-   /*@Bean
-	 public CommandLineRunner commandLineRunner() { //Executa automaticamente junto com o Spring
-
-        return args ->{
-
-            System.out.println("Executando o primeiro teste do projeto perfeitamente!");
-
-       };
-	    }*/
-
 }
