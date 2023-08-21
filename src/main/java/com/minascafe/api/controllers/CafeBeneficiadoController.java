@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController//Endpoint (página web) de Controller
 @RequestMapping("cafebeneficiado") //Define a url da classe
+@CrossOrigin(origins = "http://localhost:3000")
 public class CafeBeneficiadoController {
 
     public static final Logger log = LoggerFactory.getLogger(CafeBeneficiadoController.class);

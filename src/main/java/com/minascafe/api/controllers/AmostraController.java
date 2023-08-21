@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("amostra")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AmostraController {
 
     public static final Logger log = LoggerFactory.getLogger(AmostraController.class);
