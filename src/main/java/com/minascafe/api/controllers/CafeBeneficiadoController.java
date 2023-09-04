@@ -32,10 +32,13 @@ public class CafeBeneficiadoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb){
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb){
        cafeBeneficiadoRepository.save(new CafeBeneficiado(cb));
 
        System.out.println("Lote de café beneficiado salvo no banco com sucesso!");
+
+       String responseMessage = "Lote de Café Beneficiado cadastrado com sucesso!";
+       return ResponseEntity.ok(responseMessage);
     }
 
     @GetMapping //Listagem de Café Beneficiado ativo

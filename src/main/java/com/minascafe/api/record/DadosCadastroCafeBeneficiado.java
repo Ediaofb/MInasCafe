@@ -7,10 +7,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public record DadosCadastroCafeBeneficiado(
-        @NotBlank //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
+        @NotBlank(message = "O a") //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
         String produtor,
         String apelido,
-        String status,
         @NotNull
         LocalDate data,
         @NotNull(message = "A quantidade de quilos deve ser preenchida, mesmo que seja com '0'")
@@ -19,6 +18,7 @@ public record DadosCadastroCafeBeneficiado(
         @Range(min = 0, max = 59, message = "Acima de 60 quilos, considere adicionar mais 1 saco!")
         float quilos,
         int barracao,
+        String status,
         String subproduto,
         int numero_nota,
         String classificacao,
