@@ -21,6 +21,7 @@ public record DadosCadastroCafeBeneficiado(
         String status,
         String subproduto,
         int numero_nota,
+        String referencia,
         String classificacao,
         int catacao,
         int peneira,

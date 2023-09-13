@@ -285,6 +285,9 @@ public class CafeMaquina implements Serializable{
         if(cm.porcentagem_produtor() != null){
             this.porcentagem_produtor = cm.porcentagem_produtor();
         }
+        if(cm.referencia() != null){
+            this.referencia = cm.referencia();
+        }
     }
 
     public void subtrairSacasQuilos(int sacas, float quilos) { //subtrai sacas e quilos utilizados em uma liga

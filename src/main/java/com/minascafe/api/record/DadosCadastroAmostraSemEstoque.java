@@ -1,7 +1,6 @@
 package com.minascafe.api.record;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public record DadosCadastroAmostraSemEstoque(
     String produtor,

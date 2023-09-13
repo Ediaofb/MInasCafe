@@ -271,7 +271,7 @@ public class CafeCoco implements Serializable{
         data = atual;
     }*/
 
-    @Override
+    /* @Override
     public String toString() {
         return "CafeCoco{" +
                 "lote=" + lote +
@@ -295,7 +295,7 @@ public class CafeCoco implements Serializable{
                 ", porcentagem_produtor=" + porcentagem_produtor +
                 ", porcentagem_meieiro=" + porcentagem_meieiro +
                 '}';
-    }
+    } */
 
     public void atualizarInformacoes(DadosAtualizacaoCafeCoco da) {
         if (da.data() != null){
@@ -306,6 +306,9 @@ public class CafeCoco implements Serializable{
         }
         if(da.produtor() != null) {
             this.produtor = da.produtor();
+        }
+        if(da.status() != null /*|| da.status() != "Já beneficiado"*/) {
+            this.status = da.status();
         }
         if(da.catacao() != null){
             this.catacao = da.catacao();
@@ -330,6 +333,9 @@ public class CafeCoco implements Serializable{
         }
         if(da.peneira() != null){
             this.peneira = da.peneira();
+        }
+        if(da.referencia() != null){
+            this.referencia = da.referencia();
         }
         if(da.subproduto() != null){
             this.subproduto = da.subproduto();

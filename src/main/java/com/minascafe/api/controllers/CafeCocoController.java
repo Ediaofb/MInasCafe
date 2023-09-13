@@ -1,6 +1,7 @@
 package com.minascafe.api.controllers;
 
 import com.minascafe.api.entities.CafeCoco;
+import com.minascafe.api.record.AtualizacaoStatusRequest;
 import com.minascafe.api.record.DadosAtualizacaoCafeCoco;
 import com.minascafe.api.record.DadosCadastroCafeCoco;
 import com.minascafe.api.record.DadosListagemCafeCoco;
@@ -36,10 +37,17 @@ public class CafeCocoController {
         System.out.print("Lote de café em côco salvo no banco com sucesso!");
     }
 
-    @GetMapping //Listagem de Café em Côco Ativo
+    @GetMapping //Listagem de Café em Côco
+    public ResponseEntity <List<CafeCoco>> listar(){
+        List<CafeCoco> coq = cafe_coco.findAll();
+        return ResponseEntity.ok().body(coq);
+    }
+
+
+    /* @GetMapping //Listagem de Café em Côco Ativo Paginado
     public Page<DadosListagemCafeCoco> listar(Pageable paginacao){//Devolve uma lista de Café em Côco e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
       return cafe_coco.findAllByAtivoTrue(paginacao).map(DadosListagemCafeCoco::new);//map = Mapeamento. Converte uma lista de CafeCoco para uma lista de DadosListagemCafeCoco.
-    }
+    } */
 
     @GetMapping("/baixado") //listagem de Café em Côco deletado (inativo)
     public Page<DadosListagemCafeCoco> Cancelado(Pageable paginacao){
@@ -57,6 +65,21 @@ public class CafeCocoController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeCoco da){
        var cafe = cafe_coco.getReferenceById(da.lote()); //Carrega o cadastro do café em coco pelo lote que está vindo pelo DTO
        cafe.atualizarInformacoes(da); //Chama os métodos para atualizar os dados baseado no DTO
+    }
+
+    @PutMapping("/atualizar-status") //Realiza atualização de status no cadastro
+    @Transactional
+    public void atualizarStatusLotes(@RequestBody AtualizacaoStatusRequest request){
+        List<String> referenciaLotes = request.getReferenciaLotes();
+        String novoStatus = request.getNovoStatus();
+
+        for (String referencia : referenciaLotes) {
+         List<CafeCoco> lotes = cafe_coco.findByReferenciaAndAtivoTrue(referencia);
+         for (CafeCoco lote : lotes){
+            lote.setStatus(novoStatus);
+            cafe_coco.save(lote);
+         }
+        }
     }
 
     @DeleteMapping("{lote}")

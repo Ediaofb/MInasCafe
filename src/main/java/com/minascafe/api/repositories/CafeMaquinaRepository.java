@@ -5,7 +5,6 @@ import com.minascafe.api.entities.CafeMaquina;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -20,5 +19,8 @@ public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Intege
     Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
 
     Page<CafeMaquina> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = false (café máquina baixado)
+
     List<CafeMaquina> findByLoteAndAtivoTrue(int lote);
+
+    List<CafeMaquina> findAll();
 }

@@ -8,6 +8,7 @@ public record DadosAtualizacaoCafeCoco(
        Integer lote,
        String produtor,
        LocalDate data,
+       String status,
        Integer catacao,
        String subproduto,
        String classificacao,
@@ -16,6 +17,7 @@ public record DadosAtualizacaoCafeCoco(
        String meieiro,
        Integer numero_nota,
        String observacoes,
+       String referencia,
        Integer peneira,
        Integer porcentagem_meieiro,
        Integer porcentagem_produtor) {

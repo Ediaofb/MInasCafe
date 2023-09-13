@@ -29,10 +29,12 @@ public class FichaProdutorController {
 
     @PostMapping //Grava um registro no banco
     @Transactional //Unidade de trabalho isolada que leva o banco de dados de um estado consistente a outro estado consistente
-    public void cadastrar(@RequestBody @Valid DadosCadastroFichaProdutor fp)
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroFichaProdutor fp)
     {
         prod.save(new FichaProdutor(fp));
         System.out.print("Cadastro de produtor salvo no banco com sucesso!");
+
+        return ResponseEntity.ok("Ficha de Produtor cadastrada com sucesso!");
     }
 
     @GetMapping

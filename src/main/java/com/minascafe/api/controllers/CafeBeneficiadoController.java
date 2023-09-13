@@ -27,9 +27,6 @@ public class CafeBeneficiadoController {
     @Autowired
     private CafeBeneficiadoRepository cafeBeneficiadoRepository; //Injetando o Repository como sendo um atributo
 
-    @Autowired
-    private CafeBeneficiado cafeBeneficiado;
-
     @PostMapping
     @Transactional
     public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb){
@@ -41,10 +38,16 @@ public class CafeBeneficiadoController {
        return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping //Listagem de Café Beneficiado ativo
+    @GetMapping //Listagem de Café Beneficiado
+    public ResponseEntity <List<CafeBeneficiado>> listar(){
+        List<CafeBeneficiado> caf = cafeBeneficiadoRepository.findAll();
+        return ResponseEntity.ok().body(caf);
+    }
+
+    /* @GetMapping //Listagem de Café Beneficiado ativo paginado
     public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
       return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCafeBeneficiado::new);
-    }
+    } */
 
     @GetMapping("/baixado") //listagem de Café Beneficiado deletado (inativo)
     public Page<DadosListagemCafeBeneficiado> Baixa(Pageable paginacao){

@@ -17,6 +17,7 @@ public record DadosAtualizacaoCafeMaquina (
       Integer catacao,
       Integer peneira,
       String lancado,
+      String referencia,
       String meieiro,
       String observacoes,
       Integer porcentagem_meieiro,

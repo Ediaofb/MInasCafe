@@ -47,6 +47,7 @@ public class CafeBeneficiado implements Serializable{
     private int peneira;
     private String lancado;
     private String observacoes;
+    private String referencia;
     private String meieiro;
     private int porcentagem_produtor;
     private int porcentagem_meieiro;
@@ -63,6 +64,7 @@ public class CafeBeneficiado implements Serializable{
         this.lancado = cb.lancado();
         this.peneira = cb.peneira();
         this.numero_nota = cb.numero_nota();
+        this.referencia = cb.referencia();
         this.status = cb.status();
         this.subproduto = cb.subproduto();
         this.sacas = cb.sacas();

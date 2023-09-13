@@ -15,6 +15,7 @@ public interface LigaRepository extends JpaRepository<Liga, Integer> {//é um ob
     Liga findById(int Id); // SELECT * FROM Liga WHERE Id = this.Id
 
     Liga findByNomeliga(String nomeliga);
+    
     List<Liga> findAll();
 
     List<Liga> findBydata(LocalDate data);
