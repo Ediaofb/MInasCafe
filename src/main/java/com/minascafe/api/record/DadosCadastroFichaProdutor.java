@@ -9,10 +9,10 @@ public record DadosCadastroFichaProdutor(
         @NotBlank(message = "O nome não pode estar vazio! Por favor, cadastre um nome de produtor")
         String nome,
         String apelido,
-        @CPF
+        @CPF(message = "O CPF digitado é inválido! Tente novamente com um CPF válido!")
         String cpf,
         String telefone,
-        @NotNull
+        // @NotNull
         LocalDate data,
         String entrada_saida,
         String lote,
