@@ -1,0 +1,12 @@
+{
+  "name": "minascafe",
+  "version": "1.0.0",
+  "description": "Sistema de gestão de processos de comércio de cafés.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
