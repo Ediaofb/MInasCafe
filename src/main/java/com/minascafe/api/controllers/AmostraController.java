@@ -17,37 +17,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping("amostra")
-@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "http://localhost:3000")
 public class AmostraController {
 
     public static final Logger log = LoggerFactory.getLogger(AmostraController.class);
 
     @Autowired
-    private AmostraRepository amostraRepository; //Injetando o Repository como sendo um atributo
+    private AmostraRepository amostraRepository; // Injetando o Repository como sendo um atributo
 
     @PostMapping
     @Transactional
-    public void registrar(@RequestBody @Valid DadosCadastroAmostraSemEstoque am){
-        amostraRepository.save(new AmostraSemEstoque(am));//Salva um novo objeto entidade JPA do tipo AmostraSemEstoque passando os
-        // parâmetros que vêm do Json da requisição no construtor da Entidade AmostraSemEstoque
+    public void registrar(@RequestBody @Valid DadosCadastroAmostraSemEstoque am) {
+        amostraRepository.save(new AmostraSemEstoque(am));// Salva um novo objeto entidade JPA do tipo AmostraSemEstoque
+                                                          // passando os
+        // parâmetros que vêm do Json da requisição no construtor da Entidade
+        // AmostraSemEstoque
 
         System.out.print("Amostra sem estoque salva no banco com sucesso!");
     }
 
     @GetMapping
-    public ResponseEntity <List<AmostraSemEstoque>> recuperar(){
+    public ResponseEntity<List<AmostraSemEstoque>> recuperar() {
         List<AmostraSemEstoque> amo = amostraRepository.findAll();
         return ResponseEntity.ok().body(amo);
     }
 
     @GetMapping("/produtor/{produtor}")
-    public ResponseEntity <List<AmostraSemEstoque>> busca_amostra(@PathVariable String produtor){
-       List<AmostraSemEstoque> am = amostraRepository.findByProdutor(produtor);
-       return ResponseEntity.ok().body(am);
+    public ResponseEntity<List<AmostraSemEstoque>> busca_amostra(@PathVariable String produtor) {
+        List<AmostraSemEstoque> am = amostraRepository.findByProdutor(produtor);
+        return ResponseEntity.ok().body(am);
     }
 
     @GetMapping("/data/{data}")
-    public List<AmostraSemEstoque> buscarPorData(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate data){
+    public List<AmostraSemEstoque> buscarPorData(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data) {
         List<AmostraSemEstoque> amos = amostraRepository.findByData(data);
         return ResponseEntity.ok().body(amos).getBody();
     }

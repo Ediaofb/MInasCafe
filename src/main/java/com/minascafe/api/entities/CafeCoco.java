@@ -259,44 +259,7 @@ public class CafeCoco implements Serializable{
     public void setPorcentagem_meieiro(int porcentagem_meieiro) {
         this.porcentagem_meieiro = porcentagem_meieiro;
     }
-
-    /*@PreUpdate //executa o método anotado antes da entidade ser atualizada
-    public void preUpdate() {
-        data = new Date();
-    }
-
-    @PrePersist
-    public void prePersistO() {
-        final Date atual = new Date();
-        data = atual;
-    }*/
-
-    /* @Override
-    public String toString() {
-        return "CafeCoco{" +
-                "lote=" + lote +
-                ", produtor='" + produtor + '\'' +
-                ", apelido='" + apelido + '\'' +
-                ", status='" + status + '\'' +
-                ", data=" + data +
-                ", sacos=" + sacos +
-                ", quilos=" + quilos +
-                ", humidade=" + humidade +
-                ", barracao=" + barracao +
-                ", subproduto='" + subproduto + '\'' +
-                ", numero_nota=" + numero_nota +
-                ", classificacao='" + classificacao + '\'' +
-                ", catacao=" + catacao +
-                ", peneira=" + peneira +
-                ", lancado='" + lancado + '\'' +
-                ", observacoes='" + observacoes + '\'' +
-                ", referencia='" + referencia + '\'' +
-                ", meieiro='" + meieiro + '\'' +
-                ", porcentagem_produtor=" + porcentagem_produtor +
-                ", porcentagem_meieiro=" + porcentagem_meieiro +
-                '}';
-    } */
-
+    
     public void atualizarInformacoes(DadosAtualizacaoCafeCoco da) {
         if (da.data() != null){
             System.out.println("\n\n\n DATA ATUAL: " +this.data);

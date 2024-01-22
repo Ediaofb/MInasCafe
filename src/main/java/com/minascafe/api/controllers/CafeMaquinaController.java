@@ -17,66 +17,81 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin /* (origins = "http://localhost:3000") */
 @RequestMapping("cafemaquina")
-@CrossOrigin(origins = "http://localhost:3000")
 public class CafeMaquinaController {
 
     @Autowired
-    private CafeMaquinaRepository cafemaquinaRepository; //Injetando o Repository como sendo um atributo
+    private CafeMaquinaRepository cafemaquinaRepository; // Injetando o Repository como sendo um atributo
 
+    @CrossOrigin
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroCafeMaquina cm){
-      cafemaquinaRepository.save(new CafeMaquina(cm));
+    public void cadastrar(@RequestBody @Valid DadosCadastroCafeMaquina cm) {
+        cafemaquinaRepository.save(new CafeMaquina(cm));
 
-      System.out.println("Lote de café máquina salvo no banco com sucesso!");
+        System.out.println("Lote de café máquina salvo no banco com sucesso!");
     }
 
-    @GetMapping //listagem de Café Máquina
-    public ResponseEntity <List<CafeMaquina>> recuperar(){
+    @CrossOrigin
+    @GetMapping // listagem de Café Máquina
+    public ResponseEntity<List<CafeMaquina>> recuperar() {
         List<CafeMaquina> maq = cafemaquinaRepository.findAll();
         return ResponseEntity.ok().body(maq);
     }
 
-    /*@GetMapping //listagem de Café Máquina
-     public List<DadosListagemCafeMaquina> Listar() {
-        return cafemaquinaRepository.findAll().stream().map(DadosListagemCafeMaquina::new).collect(Collectors.toList());
-    } */
+    /*
+     * @GetMapping //listagem de Café Máquina
+     * public List<DadosListagemCafeMaquina> Listar() {
+     * return
+     * cafemaquinaRepository.findAll().stream().map(DadosListagemCafeMaquina::new).
+     * collect(Collectors.toList());
+     * }
+     */
 
-    /*@GetMapping //listagem de Café Máquina ativo
-     public Page<DadosListagemCafeMaquina> Listar(Pageable paginacao){//Devolve uma lista de Café Maquina e informações sobre a paginação. É apenas leitura, não precisa da anotação @Transactional
-      return cafemaquinaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCafeMaquina::new); //map = converte entidade cafemaquinaRepository para o objeto DTO
-    } */
+    /*
+     * @GetMapping //listagem de Café Máquina ativo
+     * public Page<DadosListagemCafeMaquina> Listar(Pageable paginacao){//Devolve
+     * uma lista de Café Maquina e informações sobre a paginação. É apenas leitura,
+     * não precisa da anotação @Transactional
+     * return cafemaquinaRepository.findAllByAtivoTrue(paginacao).map(
+     * DadosListagemCafeMaquina::new); //map = converte entidade
+     * cafemaquinaRepository para o objeto DTO
+     * }
+     */
 
-    @GetMapping("/baixado") //listagem de Café Máquina deletado (inativo)
-    public Page<DadosListagemCafeMaquina> Cancelado(Pageable paginacao){
+    @CrossOrigin
+    @GetMapping("/baixado") // listagem de Café Máquina deletado (inativo)
+    public Page<DadosListagemCafeMaquina> Cancelado(Pageable paginacao) {
         return cafemaquinaRepository.findAllByAtivoFalse(paginacao).map(DadosListagemCafeMaquina::new);
     }
 
+    @CrossOrigin
     @GetMapping("/produtor/{produtor}")
-    public ResponseEntity <List<CafeMaquina>> buscaCafeMaquina(@PathVariable String produtor){
+    public ResponseEntity<List<CafeMaquina>> buscaCafeMaquina(@PathVariable String produtor) {
         List<CafeMaquina> maq = cafemaquinaRepository.findByProdutor(produtor);
         return ResponseEntity.ok().body(maq);
     }
 
-
-    @GetMapping("{lote}") //listagem de lotes de Café Máquina "ativos"
-    public ResponseEntity<List<CafeMaquina>> localizar(@PathVariable int lote){
+    @CrossOrigin
+    @GetMapping("{lote}") // listagem de lotes de Café Máquina "ativos"
+    public ResponseEntity<List<CafeMaquina>> localizar(@PathVariable int lote) {
         List<CafeMaquina> cam = cafemaquinaRepository.findByLoteAndAtivoTrue(lote);
         return ResponseEntity.ok().body(cam);
     }
 
-    @PutMapping //Realiza atualizações (Update) no cadastro
+    @CrossOrigin
+    @PutMapping // Realiza atualizações (Update) no cadastro
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeMaquina cm) {
         var maquina = cafemaquinaRepository.getReferenceById(cm.lote());
         maquina.atualizarInformacoes(cm);
     }
 
+    @CrossOrigin
     @DeleteMapping("{lote}")
     @Transactional
-    public void inativar(@PathVariable int lote)
-    {
+    public void inativar(@PathVariable int lote) {
         var maq = cafemaquinaRepository.getReferenceById(lote);
         maq.inativar();
     }

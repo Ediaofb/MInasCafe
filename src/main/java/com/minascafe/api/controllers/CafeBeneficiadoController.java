@@ -17,58 +17,70 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@RestController//Endpoint (página web) de Controller
-@RequestMapping("cafebeneficiado") //Define a url da classe
-@CrossOrigin(origins = "http://localhost:3000")
+@RestController // Endpoint (página web) de Controller
+@RequestMapping("cafebeneficiado") // Define a url da classe
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
 public class CafeBeneficiadoController {
 
     public static final Logger log = LoggerFactory.getLogger(CafeBeneficiadoController.class);
 
     @Autowired
-    private CafeBeneficiadoRepository cafeBeneficiadoRepository; //Injetando o Repository como sendo um atributo
+    private CafeBeneficiadoRepository cafeBeneficiadoRepository; // Injetando o Repository como sendo um atributo
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb){
-       cafeBeneficiadoRepository.save(new CafeBeneficiado(cb));
+    @CrossOrigin
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb) {
+        cafeBeneficiadoRepository.save(new CafeBeneficiado(cb));
 
-       System.out.println("Lote de café beneficiado salvo no banco com sucesso!");
+        System.out.println("Lote de café beneficiado salvo no banco com sucesso!");
 
-       String responseMessage = "Lote de Café Beneficiado cadastrado com sucesso!";
-       return ResponseEntity.ok(responseMessage);
+        String responseMessage = "Lote de Café Beneficiado cadastrado com sucesso!";
+        return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping //Listagem de Café Beneficiado
-    public ResponseEntity <List<CafeBeneficiado>> listar(){
+    @GetMapping // Listagem de Café Beneficiado
+    @CrossOrigin
+    public ResponseEntity<List<CafeBeneficiado>> listar() {
         List<CafeBeneficiado> caf = cafeBeneficiadoRepository.findAll();
         return ResponseEntity.ok().body(caf);
     }
 
-    /* @GetMapping //Listagem de Café Beneficiado ativo paginado
-    public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
-      return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCafeBeneficiado::new);
-    } */
+    /*
+     * @GetMapping //Listagem de Café Beneficiado ativo paginado
+     * public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
+     * return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(
+     * DadosListagemCafeBeneficiado::new);
+     * }
+     */
 
-    @GetMapping("/baixado") //listagem de Café Beneficiado deletado (inativo)
-    public Page<DadosListagemCafeBeneficiado> Baixa(Pageable paginacao){
+    @GetMapping("/baixado") // listagem de Café Beneficiado deletado (inativo)
+    @CrossOrigin
+    public Page<DadosListagemCafeBeneficiado> Baixa(Pageable paginacao) {
         return cafeBeneficiadoRepository.findAllByAtivoFalse(paginacao).map(DadosListagemCafeBeneficiado::new);
     }
 
-    @GetMapping("/{lote}") //listagem de lotes de Café Beneficiado "ativos"
-    public ResponseEntity <List<CafeBeneficiado>> encontrar(@PathVariable int lote){//No PathVariable o parâmetro é passado diretamente no corpo da requisição e esse valor faz parte do corpo da requisição
-       List<CafeBeneficiado> ben = cafeBeneficiadoRepository.findByLoteAndAtivoTrue(lote);
-       return ResponseEntity.ok().body(ben);
+    @GetMapping("/{lote}") // listagem de lotes de Café Beneficiado "ativos"
+    @CrossOrigin
+    public ResponseEntity<List<CafeBeneficiado>> encontrar(@PathVariable int lote) {// No PathVariable o parâmetro é
+                                                                                    // passado diretamente no corpo da
+                                                                                    // requisição e esse valor faz parte
+                                                                                    // do corpo da requisição
+        List<CafeBeneficiado> ben = cafeBeneficiadoRepository.findByLoteAndAtivoTrue(lote);
+        return ResponseEntity.ok().body(ben);
     }
 
     @GetMapping("/produtor/{produtor}")
-    public ResponseEntity <List<CafeBeneficiado>> busca_produtor(@PathVariable String produtor){
+    @CrossOrigin
+    public ResponseEntity<List<CafeBeneficiado>> busca_produtor(@PathVariable String produtor) {
         List<CafeBeneficiado> caf = cafeBeneficiadoRepository.findByProdutor(produtor);
         return ResponseEntity.ok().body(caf);
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeBeneficiado db){
+    @CrossOrigin
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeBeneficiado db) {
         var beneficiado = cafeBeneficiadoRepository.getReferenceById(db.lote());
         beneficiado.atualizarInformacoes(db);
     }
