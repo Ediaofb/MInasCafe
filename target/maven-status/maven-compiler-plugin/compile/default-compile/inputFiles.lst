@@ -11,6 +11,7 @@ C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\serv
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\MinasCafeApplication.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\services\impl\CafeCocoImpl.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\DadosListagemLiga.java
+C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\entities\User.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\repositories\CafeCocoRepository.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\entities\Liga.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\repositories\LigaRepository.java
@@ -18,6 +19,7 @@ C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\serv
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\repositories\FichaProdutorRepository.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\dtos\CafeBeneficiadoDto.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\dtos\CafeMaquinaDto.java
+C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\services\AuthorizationService.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\dtos\CafeCocoDto.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\services\impl\CafeBeneficiadoImpl.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\DadosListagemFichaProdutor.java
@@ -33,7 +35,9 @@ C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\reco
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\DadosAtualizarAmostra.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\DadosListagemCafeBeneficiado.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\DadosCadastroAmostraSemEstoque.java
+C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\infra\security\SecurityConfigurations.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\record\AtualizacaoStatusRequest.java
+C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\entities\UserRole.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\responses\CafeCocoResponse.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\entities\CafeMaquina.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\controllers\CafeCocoController.java
@@ -54,3 +58,4 @@ C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\reco
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\entities\CafeBeneficiado.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\repositories\CafeMaquinaRepository.java
 C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\services\CafeBeneficiadoService.java
+C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\src\main\java\com\minascafe\api\repositories\UserRepository.java

@@ -27,4 +27,5 @@ public interface CafeCocoRepository extends JpaRepository<CafeCoco, Integer>{//Ã
     
     List <CafeCoco> findAll();
 
+
 }
