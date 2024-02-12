@@ -3,11 +3,9 @@ package com.minascafe.api.entities;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,9 +19,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @Entity(name = "users")
 @Getter
-@NoArgsConstructor //Criando um construtor que ñ recebe nenhum argumento
-@AllArgsConstructor //Criando um construtor nessa classe que receba todos os parâmetros
-@EqualsAndHashCode
+@NoArgsConstructor // Criando um construtor que ñ recebe nenhum argumento
+@AllArgsConstructor // Criando um construtor nessa classe que receba todos os parâmetros
+@EqualsAndHashCode(of = "id")
 public class User implements UserDetails { // É usada para identificar uma classe que represente um usuário que vai ser
                                            // autenticado na aplicação
 
@@ -31,12 +29,12 @@ public class User implements UserDetails { // É usada para identificar uma clas
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera valores de maneira crescente iniciando pelo valor 1
     private Integer id;
     private String login;
-    private String senha;
+    private String password;
     private UserRole role; // Enum para enunciar todos os tipos de roles que podem ter dentro da aplicação
 
-    public User(String login, String senha, UserRole role){
+    public User(String login, String password, UserRole role) {
         this.login = login;
-        this.senha = senha;
+        this.password = password;
         this.role = role;
     }
 
@@ -64,7 +62,7 @@ public class User implements UserDetails { // É usada para identificar uma clas
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
