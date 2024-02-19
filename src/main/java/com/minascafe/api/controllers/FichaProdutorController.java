@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController // Endpoint (página web) de Controller
-@CrossOrigin /* (origins = "http://localhost:3000") */
+// @CrossOrigin /* (origins = "http://localhost:3000") */
 @RequestMapping(value = "produtor") // Define a url da classe
 public class FichaProdutorController {
     @Autowired

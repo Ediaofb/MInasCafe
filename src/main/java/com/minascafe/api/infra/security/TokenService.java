@@ -13,12 +13,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 @Service
-public class TokenService {
+public class TokenService {    // ***** Classe para geração dos Tokens *****
 
-    @Value("${api.security.token.secret}")
+    @Value("${api.security.token.secret}") //Variavel de ambiente - Está no application.properties
     private String secret;
-     public String generateToken(User user){ //Gerador de token
+     public String generateToken(User user){ // **** Gerador de token ****
          //Qdo us. fizer req. e env. token, averiguar quem é e se possui role necessária p/ fazer aquela requisição
+         //O token fica transitando entre o cliente e o servidor
          try{
              Algorithm algorithm = Algorithm.HMAC256(secret); //Secret (HMAC256) torna os nossos Hashs únicos
              String token = JWT.create()
@@ -27,23 +28,23 @@ public class TokenService {
                      .withExpiresAt(genExpirationDate()) //tempo de expiração para o token - recebe um tipo Instant criado abaixo
                      .sign(algorithm); //para fazer a assinatura e a geração final
              return token;
-         } catch (JWTCreationException exception){
+         } catch (JWTCreationException exception){// Pode lançar exceção qdo um dos parâmetros acima ñ estiver no formato esperado
              throw new RuntimeException("Erro ao gerar token!", exception); //Lança a excessão
 
          }
     }
 
     //Método para verificar se o token ainda está válido p/ qdo usuário fizer uma nova requisição
-    public String validateToken(String token) { //Verificação p/ todas as requisições q eu defini p/ possuírem autorização
+    public String validateToken(String token) { // Descriptografa e pega o "subject": usuário
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("auth-api")
+                    .withIssuer("auth-api") //Quem foi o emissor - "nós"
                     .build() //montando novamente o dado que há "ali dentro"
                     .verify(token)//descriptografando o token
                     .getSubject(); //pegando o usuário que foi adicionado no token
         } catch (JWTVerificationException exception) { //Qdo o token ñ for gerado por nós ou esteja expirado
-            return ""; //O método q precisar desse usuário e receber a string vazia irá notar q não possui usuário e retornará erro Usuário ñ autorizado
+            return ""; //O método q precisar desse usuário e receber a string vazia irá notar q não possui usuário e retornará erro 'Usuário ñ autorizado'
         }
     }
 

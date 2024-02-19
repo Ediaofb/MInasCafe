@@ -19,7 +19,8 @@ import java.util.List;
 
 @RestController // Endpoint (página web) de Controller
 @RequestMapping("cafebeneficiado") // Define a url da classe
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+// @CrossOrigin(origins = "*", methods = { RequestMethod.GET,
+// RequestMethod.POST, RequestMethod.PUT })
 public class CafeBeneficiadoController {
 
     public static final Logger log = LoggerFactory.getLogger(CafeBeneficiadoController.class);

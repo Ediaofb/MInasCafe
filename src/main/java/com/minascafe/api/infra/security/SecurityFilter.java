@@ -31,10 +31,9 @@ public class SecurityFilter extends OncePerRequestFilter { // Filtro que acontec
             var login = tokenService.validateToken(token); // Valida o token e recebe o login (usuário)
             UserDetails user = userRepository.findByLogin(login); // Encontra o usuário
 
-            // Verificações do usuário:
-            // Pega todas as infos. q o Spring Security precisará p/ fazer as validações dos
-            // próxs. EndPoints, se tem role 'Admin' ou se está autenticado, conforme
-            // SecutityConfiguration
+            // Verificações do usuário: Pega todas as infos. q o Spring Security precisará
+            // p/ fazer as validações dos próxs. EndPoints, se tem role 'Admin' ou se está
+            // autenticado, conforme SecutityConfiguration
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             // Gerou o token q salvará no contexto da requisição p/ q/ o Spring Security
             // possa utilizar depois:
@@ -42,7 +41,7 @@ public class SecurityFilter extends OncePerRequestFilter { // Filtro que acontec
                                                                                  // usuário já validado
         } // Caso não encontre token nenhum, ñ salvará nada nessa autenticação só chamará
           // o próximo filtro
-        filterChain.doFilter(request, response); // Passa para o próximo filtro -> UserNamePasswordAuthenticationFilter
+        filterChain.doFilter(request, response); // Passa para o próximo filtro -> UserNamePasswordAuthenticationFilter em SecurityConfigurations
     }
 
     private String recoverToken(HttpServletRequest request) {

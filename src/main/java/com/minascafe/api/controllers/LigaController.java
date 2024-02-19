@@ -109,7 +109,7 @@ public class LigaController {
         return ResponseEntity.ok(liga); // Retorna a liga no corpo da resposta
     }
 
-    @CrossOrigin
+    // @CrossOrigin
     @GetMapping // Lista todas as Ligas existentes
     public List<Liga> listar() {
         return ligar.findAll();

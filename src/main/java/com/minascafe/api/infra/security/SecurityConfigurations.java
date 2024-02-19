@@ -15,8 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity // Habilite a configuração do WebSecurity e eu vou configurar dentro dessa
-                   // classe
+@EnableWebSecurity // "Habilite a configuração do WebSecurity e eu vou configurar dentro dessa
+                   // classe"
 public class SecurityConfigurations {
     // Corrente de filtro de segurança - métodos para fazer validações no usuário e
     // validar se ele está apto a fazer as requisições
@@ -29,10 +29,8 @@ public class SecurityConfigurations {
         return httpSecurity
                 .csrf(csrf -> csrf.disable()) // desliga a configuração padrão do Spring Security
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // autenticação
-                                                                                                              // stateless
-                                                                                                              // - via
-                                                                                                              // token.
-                                                                                                              // Ñ
+                                                                                                              // via
+                                                                                                              // token.Ñ
                                                                                                               // armazena
                                                                                                               // infs.
                                                                                                               // da
@@ -40,24 +38,21 @@ public class SecurityConfigurations {
                                                                                                               // no
                                                                                                               // servidor
                 .authorizeHttpRequests(authorize -> authorize // Quais são as requisições http que serão autorizadas
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // permitindo que qualquer usuário
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // permite q/ qualquer pessoa
                                                                                      // faça requisições para tela de
                                                                                      // login
-                        /* Posteriormente liberar somente para Admins */ .requestMatchers(HttpMethod.POST,
-                                "/auth/register")
-                        .permitAll() // Só para testar. Deve ser bloqueado. Permissão só para Admins
-                        .requestMatchers(HttpMethod.POST, "/cafecoco/**").permitAll()// hasRole("ADMIN") //Qualquer
-                                                                                     // request do tipo "POST" p/
-                                                                                     // /cafecoco quero q o usuário
-                                                                                     // tenha role tipo "ADMIN"
+                        .requestMatchers(HttpMethod.POST,"/auth/register").permitAll() // ** Só para testar. Deve ser bloqueado. Permissão só para Admins **
+                        .requestMatchers(HttpMethod.POST, "/cafecoco/**").permitAll()// hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/cafemaquina/**").permitAll()// hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/cafebeneficiado/**").permitAll()// hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/cafebeneficiado/**").permitAll()// hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/cafecoco/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/auth/login/**").permitAll()
                         .anyRequest().authenticated() // para todas as outras requisições o usuário deve estar
                                                       // autenticado apenas
                 )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // antes de
-                                                                                             // UserNamePasswordAuthenticationFilter
+                // Fará um filtro em todas as reqs. com base nas regras q estaremos
+                // implementando. Fará antes dos filtros acima
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //1° o securityFilter, depois UserNamePasswordAuthenticationFilter
                 .build(); // Cria o objeto SecurityFilterChain
     }
 

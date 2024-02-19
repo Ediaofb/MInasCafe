@@ -6,5 +6,5 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.minascafe.api.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    UserDetails findByLogin(String login);
+    UserDetails findByLogin(String login); //Método para consultar usuário pelo login - retornará um UserDetails
 }

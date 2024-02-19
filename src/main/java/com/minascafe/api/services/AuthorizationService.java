@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class AuthorizationService implements UserDetailsService {
+@Service //É um serviço da aplicação
+public class AuthorizationService implements UserDetailsService { //UserDetailsService para chamar de forma automática
 
     @Autowired
     UserRepository repository;

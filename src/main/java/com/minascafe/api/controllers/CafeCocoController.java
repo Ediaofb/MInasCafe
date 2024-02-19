@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+// @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController // Endpoint (página web) de Controller
 @RequestMapping("cafecoco") // Define a url da classe
 public class CafeCocoController {

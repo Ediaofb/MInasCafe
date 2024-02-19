@@ -13,14 +13,22 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
+// @EnableWebMvc // Substitui as configurações padrão fornecidas pelo Spring
+// Boot, permitindo
+// personalização da configuração
 public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+                .allowedOrigins("http://localhost",  "http://localhost:3000" )
+                .allowedMethods("GET", "POST", "PUT", "DELETE"/*, "OPTIONS"*/)
+                .allowedHeaders("*") // indica quais cabeçalhos HTTP são permitidos na solicitação CORS.
+                .exposedHeaders("Authorization")// Permitirá que o cabeçalho Authorization seja acessado pelo código
+                                                // JavaScript do cliente
+                .allowCredentials(true) // permitindo credenciais (como cookies ou cabeçalhos de autenticação) nas
+                                        // solicitações
+                .maxAge(3600);
     }
 }
 
