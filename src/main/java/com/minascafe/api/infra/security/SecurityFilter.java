@@ -27,10 +27,11 @@ public class SecurityFilter extends OncePerRequestFilter { // Filtro que acontec
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         var token = this.recoverToken(request);
-        if (token != null) { // Caso tenha token
+        if (token != null) { // Caso o token não esteja vazio
             var login = tokenService.validateToken(token); // Valida o token e recebe o login (usuário)
             UserDetails user = userRepository.findByLogin(login); // Encontra o usuário
 
+          if (user != null) { 
             // Verificações do usuário: Pega todas as infos. q o Spring Security precisará
             // p/ fazer as validações dos próxs. EndPoints, se tem role 'Admin' ou se está
             // autenticado, conforme SecutityConfiguration
@@ -39,6 +40,9 @@ public class SecurityFilter extends OncePerRequestFilter { // Filtro que acontec
             // possa utilizar depois:
             SecurityContextHolder.getContext().setAuthentication(authentication);// Salva no contexto da aplicação o
                                                                                  // usuário já validado
+          } else {
+            System.out.println("Não possui user na classe SecurityFilter! :(");
+          }
         } // Caso não encontre token nenhum, ñ salvará nada nessa autenticação só chamará
           // o próximo filtro
         filterChain.doFilter(request, response); // Passa para o próximo filtro -> UserNamePasswordAuthenticationFilter em SecurityConfigurations

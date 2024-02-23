@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth") // Para mapear o endpoint a qual esse controller vai ser chamado
-// @CrossOrigin(origins = "*", methods = { RequestMethod.POST })
+//@CrossOrigin(origins = "*", methods = { RequestMethod.POST })
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager; //Está definida em SecurityConfigurations
@@ -60,18 +60,19 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Erro no login :(");
         }
     }
-
+    
     @PostMapping("/register") // EndPoint para criação de um novo usuário
+    @CrossOrigin
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
         if (this.repository.findByLogin(data.login()) != null) // Caso já exista alguém no banco com esse login
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado!"); // .badRequest().build();//Retorna
+            return ResponseEntity.badRequest().build(); //status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado!"); ////Retorna
                                                                                                  // um status de
                                                                                                  // BadRequest e a
                                                                                                  // mensagem no corpo da
                                                                                                  // resposta
         // ou se ñ encontrar ninguém no banco de dados com esse login, aí posso
         // registrar um novo usuário - salva o '"hash"' da senha e ñ a senha
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha()); // salva na String "O HASH DA
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password()); // salva na String "O HASH DA
                                                                                         // SENHA" do usuário
         User newUser = new User(data.login(), encryptedPassword, data.role());// Criando um novo User com o login, a
                                                                               // senha encriptada e o tipo de usuário
