@@ -37,6 +37,7 @@ public class FichaProdutor implements Serializable{
     private String cpf;
     private String telefone;
     private LocalDate data;
+    private boolean ativo;
     private String entrada_saida;
     private int renda;
     private float humidade;

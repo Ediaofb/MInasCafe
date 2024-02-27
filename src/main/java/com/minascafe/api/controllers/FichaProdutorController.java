@@ -6,6 +6,8 @@ import com.minascafe.api.record.DadosAtualizacaoFichaProdutor;
 import com.minascafe.api.record.DadosCadastroFichaProdutor;
 import com.minascafe.api.record.DadosListagemFichaProdutor;
 import com.minascafe.api.repositories.FichaProdutorRepository;
+import com.minascafe.api.services.FichaProdutorService;
+
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,8 @@ public class FichaProdutorController {
     @Autowired
     private FichaProdutorRepository prod; // Injetando o Repository como sendo um atributo
 
-    // @Autowired
-    // FichaProdutorService ficha;
+    @Autowired
+    FichaProdutorService ficha;
 
     @CrossOrigin
     @PostMapping // Grava um registro no banco
@@ -85,5 +87,12 @@ public class FichaProdutorController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoFichaProdutor fb) {
         var produtor = prod.findByNome(fb.produtor());
         produtor.atualizarInformacoes(fb);
+    }
+
+    @DeleteMapping("{nome}")
+    @Transactional
+    public ResponseEntity<String> deletarPorNome(@PathVariable String nome) {
+        ficha.removerPorNome(nome);
+        return ResponseEntity.ok("Produtor deletado com sucesso!");
     }
 }

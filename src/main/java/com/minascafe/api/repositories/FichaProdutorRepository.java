@@ -15,4 +15,5 @@ public interface FichaProdutorRepository extends JpaRepository<FichaProdutor, In
     FichaProdutor findByApelido(String apelido); //SELECT * FROM FichaProdutor WHERE apelido = this.apelido
     FichaProdutor findByCpf(String cpf); //SELECT * FROM FichaProdutor WHERE cpf = this.cpf
     List<FichaProdutor> findByNomeContains(String nome);
+    FichaProdutor deleteByProdutor(String nome);
 }

@@ -29,44 +29,35 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable()) // desliga a configuração padrão do Spring Security
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // autenticação
-                                                                                                              // via
-                                                                                                              // token.Ñ
-                                                                                                              // armazena
-                                                                                                              // infs.
-                                                                                                              // da
-                                                                                                              // sessão
-                                                                                                              // no
-                                                                                                              // servidor
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // autenticação via
+                // token.Ñ armazena infs. da sessão no servidor
                 .authorizeHttpRequests(authorize -> authorize // Quais são as requisições http que serão autorizadas
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // permite q/ qualquer pessoa
-                                                                                     // faça requisições para tela de
-                                                                                     // login
-                        .requestMatchers(HttpMethod.OPTIONS, "/auth/login/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() //.hasRole("ADMIN")//.permitAll() // ** Só para testar. Deve ser bloqueado. Permissão só para Admins **
-                        .requestMatchers(HttpMethod.OPTIONS, "/auth/register").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.OPTIONS, "/cafecoco/**").permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/cafemaquina/**").permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/cafebeneficiado/**").permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/produtor/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/cafecoco/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/cafemaquina/**").permitAll() //hasRole("ADMIN" 
-                        .requestMatchers(HttpMethod.POST, "/cafebeneficiado/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/produtor/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/cafecoco/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/cafemaquina/**").permitAll()//.authenticated() //.permitAll()
-                        .requestMatchers(HttpMethod.GET, "/cafebeneficiado/**").permitAll() //.authenticated() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/produtor/**").permitAll() //.authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/cafecoco/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/cafemaquina/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/cafebeneficiado/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/produtor/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/cafecoco/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/cafemaquina/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/cafebeneficiado/**").permitAll() //.hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/produtor/**").permitAll() //.hasRole("ADMIN")
-                        .anyRequest().authenticated() // para todas as outras requisições o usuário deve estar
-                                                      // autenticado apenas
+                        // faça requisições para tela de login
+                        .requestMatchers(HttpMethod.OPTIONS, "/auth/login/**").hasRole("ADMIN")//.permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")//.permitAll() // ** Só para testar. Deve ser bloqueado. Permissão só para Admins **
+                        .requestMatchers(HttpMethod.OPTIONS, "/auth/register").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/cafecoco/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/cafemaquina/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/cafebeneficiado/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/produtor/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cafecoco/**").hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cafemaquina/**").hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cafebeneficiado/**").hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.POST, "/produtor/**").hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.GET, "/cafecoco/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.GET, "/cafemaquina/**").authenticated() //.hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.GET, "/cafebeneficiado/**").authenticated() //.permitAll()
+                        .requestMatchers(HttpMethod.GET, "/produtor/**").authenticated() //hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/cafecoco/**").hasRole("ADMIN") //.authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/cafemaquina/**").hasRole("ADMIN") //.authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/cafebeneficiado/**").hasRole("ADMIN") //.authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/produtor/**").hasRole("ADMIN") //.authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/cafecoco/**").hasRole("ADMIN") //.authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/cafemaquina/**").hasRole("ADMIN") //.permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/cafebeneficiado/**").hasRole("ADMIN") //permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/produtor/**").hasRole("ADMIN") //.permitAll() //.hasRole("ADMIN")                        .anyRequest().authenticated() // para todas as outras requisições o usuário deve estar
+                        .anyRequest().authenticated() // o restante, deve estar autenticado apenas
                 )
                 // Fará um filtro em todas as reqs. com base nas regras q estaremos
                 // implementando. Fará antes dos filtros acima

@@ -49,4 +49,14 @@ public class FichaProdutorImpl implements FichaProdutorService {
         log.info("Removendo um produtor de nome {}: ", nome);
         this.ficha_ProdutorRepository.deleteAll();
     }
+
+    @Override
+    public void removerPorNome(String nome){
+        FichaProdutor fichaprodutor = ficha_ProdutorRepository.findByNome(nome);
+        if (fichaprodutor != null){
+            ficha_ProdutorRepository.delete(fichaprodutor);
+        } else{
+            throw new RuntimeException("Ficha de produtor não encontrada como o nome: " + nome);
+        }
+    }   
 }

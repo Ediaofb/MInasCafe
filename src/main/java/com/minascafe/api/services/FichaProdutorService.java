@@ -49,4 +49,12 @@ public interface FichaProdutorService { //Lógica de negócios da aplicação
      * @param nome
      */
     void remover(String nome);
+
+    /**
+     * Remove um produtor da base de dados por nome
+     * 
+     * @param nome
+     */
+    void removerPorNome(String nome);
+    
 }

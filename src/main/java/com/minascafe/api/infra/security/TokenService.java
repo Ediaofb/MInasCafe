@@ -17,6 +17,7 @@ public class TokenService {    // ***** Classe para geração dos Tokens *****
 
     @Value("${api.security.token.secret}") //Variavel de ambiente - Está no application.properties
     private String secret;
+
      public String generateToken(User user){ // **** Gerador de token ****
          //Qdo us. fizer req. e env. token, averiguar quem é e se possui role necessária p/ fazer aquela requisição
          //O token fica transitando entre o cliente e o servidor
@@ -29,7 +30,7 @@ public class TokenService {    // ***** Classe para geração dos Tokens *****
                      .sign(algorithm); //para fazer a assinatura e a geração final
              return token;
          } catch (JWTCreationException exception){// Pode lançar exceção qdo um dos parâmetros acima ñ estiver no formato esperado
-             throw new RuntimeException("Erro ao gerar token!", exception); //Lança a excessão
+             throw new RuntimeException("Erro ao gerar token jwt!", exception); //Lança a excessão
 
          }
     }
