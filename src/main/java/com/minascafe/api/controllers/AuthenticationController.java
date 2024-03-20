@@ -42,15 +42,6 @@ public class AuthenticationController {
                                                                               // usuário no corpo da requisição
         // RequestBody p pegar o Body através de um parâmetro
         try {
-            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.senha());// Spring
-                                                                                                       // Security usa
-                                                                                                       // uma instância
-                                                                                                       // do Repository
-                                                                                                       // p/ realizar a
-                                                                                                       // consulta
-            var auth = this.authenticationManager.authenticate(usernamePassword); // o método authenticate recebe o login
-                                                                                  // e a
-                                                                                  // senha como um token
 
             var token = tokenService.generateToken((User) auth.getPrincipal()); // Pega o objeto principal e faz um cast
                                                                                 // para o tipo usuário e retorna o usuário
