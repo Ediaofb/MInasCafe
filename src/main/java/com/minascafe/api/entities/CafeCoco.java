@@ -261,12 +261,12 @@ public class CafeCoco implements Serializable{
     }
     
     public void atualizarInformacoes(DadosAtualizacaoCafeCoco da) {
-        if (da.data() != null){
+        /*if (da.data() != null){
             System.out.println("\n\n\n DATA ATUAL: " +this.data);
             System.out.println("NOVA DATA: " +da.data() +"\n\n\n");
 
             this.data = da.data();
-        }
+        }*/
         if(da.produtor() != null) {
             this.produtor = da.produtor();
         }
@@ -275,6 +275,18 @@ public class CafeCoco implements Serializable{
         }
         if(da.catacao() != null){
             this.catacao = da.catacao();
+        }
+        if(da.data() != null){
+            this.data = da.data();
+        }
+        if(da.sacos() != null){
+            this.sacos = da.sacos();
+        }
+        if(da.quilos() != null){
+            this.quilos = da.quilos();
+        }
+        if(da.barracao() != null){
+            this.barracao = da.barracao();
         }
         if(da.classificacao() != null){
             this.classificacao = da.classificacao();

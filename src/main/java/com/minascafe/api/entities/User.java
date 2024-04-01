@@ -39,22 +39,15 @@ public class User implements UserDetails { // É usada para identificar uma clas
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {// Qdo o Spring Secutiry for consultar uma entidade
+    public Collection<? extends GrantedAuthority> getAuthorities() {// Qdo o Spring Secutiry for consultar uma entidade 
                                                                     // para ver quais as 'roles' que esse usuário
                                                                     // possui, p/ bloquear ou ñ um post, por exemplo.
                                                                     // Espera receber uma coleção de roles. Um usuário
                                                                     // pode possuir + de 1
         if (this.role == UserRole.ADMIN)
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER")); // Se for
-                                                                                                               // Admin
-                                                                                                               // receberá
-                                                                                                               // as
-                                                                                                               // permissões
-                                                                                                               // de
-                                                                                                               // Admin
-                                                                                                               // e de
-                                                                                                               // usuário
-                                                                                                               // normal.
+            return List.of(
+                new SimpleGrantedAuthority("ROLE_ADMIN"),
+                new SimpleGrantedAuthority("ROLE_USER")); // Se for Admin receberá as permissões de Admin e de usuário normal.
         else
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));// Se ñ possuir a role de admin retornará apenas a
                                                                     // role de user

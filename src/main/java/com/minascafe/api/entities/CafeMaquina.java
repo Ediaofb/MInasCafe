@@ -252,6 +252,15 @@ public class CafeMaquina implements Serializable{
         if(cm.data() != null){
             this.data = cm.data();
         }
+        if(cm.sacas() != null){
+            this.sacas = cm.sacas();
+        }
+        if(cm.quilos() != null){
+            this.quilos = cm.quilos();
+        }
+        if(cm.barracao() != null){
+            this.barracao = cm.barracao();
+        }
         if(cm.humidade() != null){
             this.humidade = cm.humidade();
         }

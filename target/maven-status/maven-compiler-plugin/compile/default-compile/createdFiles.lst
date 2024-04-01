@@ -58,7 +58,6 @@ com\minascafe\api\dtos\CafeCocoDto.class
 com\minascafe\api\record\AuthenticationDTO.class
 com\minascafe\api\repositories\UserRepository.class
 com\minascafe\api\services\impl\CafeCocoImpl.class
-com\minascafe\api\config\CorsConfig.class
 com\minascafe\api\repositories\CafeMaquinaRepository.class
 com\minascafe\api\services\LigaService.class
 com\minascafe\api\repositories\FichaProdutorRepository.class

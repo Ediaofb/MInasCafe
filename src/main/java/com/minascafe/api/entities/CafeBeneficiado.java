@@ -290,6 +290,15 @@ public class CafeBeneficiado implements Serializable{
         if(cb.data() != null){
             this.data = cb.data();
         }
+        if(cb.sacas() != null){
+            this.sacas = cb.sacas();
+        }
+        if(cb.quilos() != null){
+            this.quilos = cb.quilos();
+        }
+        if(cb.barracao() != null){
+            this.barracao = cb.barracao();
+        }
         if(cb.catacao() != null){
             this.catacao = cb.catacao();
         }

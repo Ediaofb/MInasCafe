@@ -85,14 +85,14 @@ public class FichaProdutorController {
     @PutMapping // Realiza atualizações (Update) no cadastro
     @Transactional // Para fazer escrita no banco de dados de forma efetiva
     public void atualizar(@RequestBody @Valid DadosAtualizacaoFichaProdutor fb) {
-        var produtor = prod.findByNome(fb.produtor());
+        var produtor = prod.findByNome(fb.nome());
         produtor.atualizarInformacoes(fb);
     }
 
     @DeleteMapping("{nome}")
     @Transactional
     public ResponseEntity<String> deletarPorNome(@PathVariable String nome) {
-        ficha.removerPorNome(nome);
+        prod.deleteByNome(nome);
         return ResponseEntity.ok("Produtor deletado com sucesso!");
     }
 }

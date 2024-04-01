@@ -12,12 +12,14 @@ public class AuthorizationService implements UserDetailsService { //UserDetailsS
 
     @Autowired
     UserRepository repository;
+    
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByLogin(username);//Dessa forma o SpringSecurity será capaz de consultar os nossos usuários no nosso
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        return repository.findByLogin(login);//Dessa forma o SpringSecurity será capaz de consultar os nossos usuários no nosso
         //banco de dados na tabela que criamos
     }
 }
 // Toda vez que alguém tentar se autenticar nessa aplicação, o SpringSecurity terá que ter uma forma de consultar esses usuários.
 // Dentro de 'loadUserByUsername' será onde faremos a consulta dos nossos usuários pro SpringSecurity. Aqui agente abstrai isso
 // para ele.
+

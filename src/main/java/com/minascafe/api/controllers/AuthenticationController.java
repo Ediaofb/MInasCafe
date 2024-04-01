@@ -6,6 +6,7 @@ import com.minascafe.api.record.AuthenticationDTO;
 import com.minascafe.api.record.LoginResponseDTO;
 import com.minascafe.api.record.RegisterDTO;
 import com.minascafe.api.repositories.UserRepository;
+import com.minascafe.api.services.AuthorizationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("auth") // Para mapear o endpoint a qual esse controller vai ser chamado
 //@CrossOrigin(origins = "*", methods = { RequestMethod.POST })
 public class AuthenticationController {
+    
     @Autowired
     private AuthenticationManager authenticationManager; //Está definida em SecurityConfigurations
 
@@ -34,17 +37,24 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private AuthorizationService authorizationService;
+
     //@CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login") // Método de login
     // Qdo usuário logar na aplicação vai receber um token e através desse token ele
     // conseguirá chamar os EndPoints de 'Post' e de 'Get'
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) { // vai receber as infos. passadas pelo
-                                                                              // usuário no corpo da requisição
-        // RequestBody p pegar o Body através de um parâmetro
+               
+        // usuário no corpo da requisição RequestBody p pegar o Body através de um parâmetro
         try {
 
-            var token = tokenService.generateToken((User) auth.getPrincipal()); // Pega o objeto principal e faz um cast
-                                                                                // para o tipo usuário e retorna o usuário
+            // Spring Security usa uma instância do Repository p/ realizar a consulta
+            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
+            // o método authenticate recebe o login e a senha como um token
+            var auth = this.authenticationManager.authenticate(usernamePassword);
+            // Pega o objeto principal e faz um cast para o tipo usuário e retorna o usuário
+            var token = tokenService.generateToken((User) auth.getPrincipal());
 
             return ResponseEntity.ok(new LoginResponseDTO(token)); // .status(HttpStatus.OK).body("Login autorizado!");
         } catch (AuthenticationException e) {
