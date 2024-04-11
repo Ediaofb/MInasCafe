@@ -1,6 +1,7 @@
 package com.minascafe.api.record;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 import java.time.LocalDate;
@@ -9,7 +10,8 @@ public record DadosCadastroFichaProdutor(
         @NotBlank(message = "O nome não pode estar vazio! Por favor, cadastre um nome de produtor")
         String nome,
         String apelido,
-        @CPF(message = "O CPF digitado é inválido! Tente novamente com um CPF válido!")
+       //@CPF(message = "O CPF digitado é inválido! Tente novamente com um CPF válido!")
+        @NotEmpty
         String cpf,
         String telefone,
         // @NotNull

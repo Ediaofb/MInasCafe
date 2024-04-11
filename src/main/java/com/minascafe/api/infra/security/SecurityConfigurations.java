@@ -25,8 +25,8 @@ public class SecurityConfigurations {
     // Corrente de filtro de segurança - métodos para fazer validações no usuário e
     // validar se ele está apto a fazer as requisições
 
-    // @Value("${app.frontend.url}")
-    // private String frontend;
+    @Value("${app.frontend.url}")
+    private String frontend;
 
     @Autowired
     SecurityFilter securityFilter;
@@ -86,21 +86,21 @@ public class SecurityConfigurations {
         // Faz o hash dos dados e faz decode também - com a mesma entrada ao 'hashear' sempre gera a mesma saída
     }
 
-    // @Bean
-    // public CorsConfigurationSource corsConfigurationSource() {
-    //     var configs = new CorsConfiguration();
-    //     // String[] allowedOrigins = frontend.split(",");
-    //     // for (String origin : allowedOrigins){
-    //     //     configs.addAllowedOrigin(origin.trim());
-    //     // }
-    //     // configs.addAllowedHeader("*");
-    //     // configs.addAllowedMethod("*");
-    //     configs.addAllowedOrigin(frontend);
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        var configs = new CorsConfiguration();
+        String[] allowedOrigins = frontend.split(",");
+        for (String origin : allowedOrigins){
+            configs.addAllowedOrigin(origin.trim());
+        }
+        configs.addAllowedHeader("*");
+        configs.addAllowedMethod("*");
+        // configs.addAllowedOrigin(frontend);
 
 
-    //     var url = new UrlBasedCorsConfigurationSource();
-    //     url.registerCorsConfiguration("/**", configs);
+        var url = new UrlBasedCorsConfigurationSource();
+        url.registerCorsConfiguration("/**", configs);
 
-    //     return url;
-    // }
+        return url;
+    }
 }

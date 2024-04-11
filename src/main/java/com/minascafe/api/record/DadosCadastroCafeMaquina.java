@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Range;
 import java.time.LocalDate;
 
 public record DadosCadastroCafeMaquina(
-        @NotBlank //Verifica se não é nulo e não é vazio =@NotNull + verificação de vazio
+        @NotBlank(message = "O campo produtor não pode estar vazio!") //Verifica se não é nulo e não é vazio =@NotNull + verificação de vazio
         String produtor,
         String apelido,
         float humidade,

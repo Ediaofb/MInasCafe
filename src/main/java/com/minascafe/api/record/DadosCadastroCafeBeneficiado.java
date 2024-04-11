@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public record DadosCadastroCafeBeneficiado(
-        @NotBlank(message = "O a") //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
+        @NotBlank(message = "O campo produtor não pode estar vazio!") //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
         String produtor,
         String apelido,
         @NotNull

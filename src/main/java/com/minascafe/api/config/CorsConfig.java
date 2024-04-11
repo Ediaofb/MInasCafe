@@ -1,33 +1,34 @@
-package com.minascafe.api.config;
+// package com.minascafe.api.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.web.servlet.config.annotation.CorsRegistry;
+// import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
-public class CorsConfig {
+// @Configuration
+// public class CorsConfig {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") //Aplica a configuração CORS a todos os endpoints do aplicativo
-                //especifica as origens que têm permissão para fazer solicitações de origem cruzada        
-                .allowedOrigins("http://localhost", "http://localhost:3000", "http:localhost:8080", "http://193.203.183.215",
-                "http://193.203.183.215:3000", "http://193.203.183.215:8080", "www.comerciominascafe.com", "www.comerciominascafe.com:3000",
-                "www.comerciominascafe.com:8080")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", 
-                        "Access-Control-Request-Headers", "Access-Control-Allow-Origin","Authorization")
-                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials") // Expor o cabeçalho Access-Control-Allow-Origin
-                .allowCredentials(false) //(Cookies, cabeçalhos de autorização, etc.)
-                .maxAge(3600);
-            }
-        };
-    }
-}
+//     @Bean
+//     public WebMvcConfigurer corsConfigurer() {
+//         return new WebMvcConfigurer() {
+//             @Override
+//             public void addCorsMappings(CorsRegistry registry) {
+//                 registry.addMapping("/**") //Aplica a configuração CORS a todos os endpoints do aplicativo
+//                 //especifica as origens que têm permissão para fazer solicitações de origem cruzada        
+//                 .allowedOrigins("http://localhost", "http://localhost:3000", "http://localhost/produtor", "http:localhost:8080", "http://193.203.183.215",
+//                 "http://193.203.183.215:3000", "http://193.203.183.215:8080", "www.comerciominascafe.com", "www.comerciominascafe.com:3000",
+//                 "www.comerciominascafe.com:8080")
+//                 // .allowedOrigins("*")
+//                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                 .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", 
+//                         "Access-Control-Request-Headers", "Access-Control-Allow-Origin","Authorization")
+//                 .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials") // Expor o cabeçalho Access-Control-Allow-Origin
+//                 .allowCredentials(false) //(Cookies, cabeçalhos de autorização, etc.)
+//                 .maxAge(3600);
+//             }
+//         };
+//     }
+// }
 
 
 // import org.springframework.web.cors.CorsConfiguration;
