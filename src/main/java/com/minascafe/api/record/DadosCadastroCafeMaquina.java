@@ -29,5 +29,5 @@ public record DadosCadastroCafeMaquina(
         String referencia,
         String meieiro,
         int porcentagem_produtor,
-        int porcentagem_meieiro) {
+        int porcentagem_meieiro) {      
 }

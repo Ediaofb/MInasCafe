@@ -59,7 +59,7 @@ public class CafeCoco implements Serializable{
         this.catacao = cc.catacao();
         this.barracao = cc.barracao();
         this.classificacao = cc.classificacao();
-        this.lancado = cc.lancado();
+        this.lancado = "nao";
         this.peneira = cc.peneira();
         this.numero_nota = cc.numero_nota();
         this.referencia = cc.referencia();

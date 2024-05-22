@@ -58,7 +58,7 @@ public class CafeMaquina implements Serializable{
         this.classificacao = cm.classificacao();
         this.catacao = cm.catacao();
         this.peneira = cm.peneira();
-        this.lancado = cm.lancado();
+        this.lancado = "nao";
         this.observacoes = cm.observacoes();
         this.referencia = cm.referencia();
         this.meieiro = cm.meieiro();

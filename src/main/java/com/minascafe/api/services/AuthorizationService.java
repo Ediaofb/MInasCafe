@@ -22,4 +22,3 @@ public class AuthorizationService implements UserDetailsService { //UserDetailsS
 // Toda vez que alguém tentar se autenticar nessa aplicação, o SpringSecurity terá que ter uma forma de consultar esses usuários.
 // Dentro de 'loadUserByUsername' será onde faremos a consulta dos nossos usuários pro SpringSecurity. Aqui agente abstrai isso
 // para ele.
-

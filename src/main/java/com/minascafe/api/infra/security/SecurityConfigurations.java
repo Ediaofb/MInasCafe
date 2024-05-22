@@ -95,7 +95,7 @@ public class SecurityConfigurations {
         }
         configs.addAllowedHeader("*");
         configs.addAllowedMethod("*");
-        // configs.addAllowedOrigin(frontend);
+        //configs.addAllowedOrigin(frontend);
 
 
         var url = new UrlBasedCorsConfigurationSource();

@@ -61,7 +61,7 @@ public class CafeBeneficiado implements Serializable{
         this.barracao = cb.barracao();
         this.humidade = cb.humidade();
         this.classificacao = cb.classificacao();
-        this.lancado = cb.lancado();
+        this.lancado = "nao";
         this.peneira = cb.peneira();
         this.numero_nota = cb.numero_nota();
         this.referencia = cb.referencia();
