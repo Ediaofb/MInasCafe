@@ -1,29 +1,30 @@
-2024-02-16T09:24:51.172-03:00  INFO 9168 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : Starting MinasCafeApplication using Java 17.0.8 with PID 9168 (C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\target\classes started by T.I.MINAS CAFE in C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe)
-2024-02-16T09:24:51.196-03:00  INFO 9168 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : No active profile set, falling back to 1 default profile: "default"
-2024-02-16T09:24:51.369-03:00  INFO 9168 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-02-16T09:24:51.370-03:00  INFO 9168 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-02-16T09:24:52.445-03:00  INFO 9168 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-02-16T09:24:52.554-03:00  INFO 9168 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 6 JPA repository interfaces.
-2024-02-16T09:24:53.367-03:00  INFO 9168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2024-02-16T09:24:53.380-03:00  INFO 9168 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-02-16T09:24:53.381-03:00  INFO 9168 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
-2024-02-16T09:24:53.469-03:00  INFO 9168 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-02-16T09:24:53.470-03:00  INFO 9168 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2098 ms
-2024-02-16T09:24:53.696-03:00  INFO 9168 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-02-16T09:24:53.774-03:00  INFO 9168 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2024-02-16T09:24:54.320-03:00  INFO 9168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-02-16T09:24:55.092-03:00  INFO 9168 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@204aef2f
-2024-02-16T09:24:55.096-03:00  INFO 9168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-02-16T09:24:55.180-03:00  INFO 9168 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-2024-02-16T09:24:57.372-03:00  INFO 9168 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-02-16T09:24:57.382-03:00  INFO 9168 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-02-16T09:24:58.174-03:00  WARN 9168 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-02-16T09:24:58.576-03:00  INFO 9168 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2024-02-16T09:24:58.628-03:00  INFO 9168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2024-02-16T09:24:58.639-03:00  INFO 9168 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : Started MinasCafeApplication in 8.49 seconds (process running for 9.557)
-2024-02-16T09:25:03.334-03:00  INFO 9168 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-02-16T09:25:03.335-03:00  INFO 9168 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-02-16T09:25:03.336-03:00  INFO 9168 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-02-16T09:29:25.094-03:00  INFO 9168 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-02-16T09:29:25.100-03:00  INFO 9168 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-02-16T09:29:25.112-03:00  INFO 9168 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-03-22T10:41:06.608-03:00  INFO 10888 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : Starting MinasCafeApplication using Java 17.0.8 with PID 10888 (C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe\target\classes started by T.I.MINAS CAFE in C:\Users\T.I.MINAS CAFE\MinasCafe\MinasCafe)
+2024-03-22T10:41:06.622-03:00  INFO 10888 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-03-22T10:41:06.699-03:00  INFO 10888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-22T10:41:06.699-03:00  INFO 10888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-22T10:41:08.526-03:00  INFO 10888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-22T10:41:08.822-03:00  INFO 10888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 262 ms. Found 7 JPA repository interfaces.
+2024-03-22T10:41:10.306-03:00  INFO 10888 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-22T10:41:10.320-03:00  INFO 10888 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-22T10:41:10.321-03:00  INFO 10888 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2024-03-22T10:41:10.402-03:00  INFO 10888 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-22T10:41:10.402-03:00  INFO 10888 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3702 ms
+2024-03-22T10:41:10.604-03:00  INFO 10888 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-22T10:41:10.684-03:00  INFO 10888 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-03-22T10:41:11.067-03:00  INFO 10888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-03-22T10:41:11.560-03:00  INFO 10888 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a82d285
+2024-03-22T10:41:11.563-03:00  INFO 10888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-03-22T10:41:11.626-03:00  INFO 10888 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2024-03-22T10:41:13.115-03:00  INFO 10888 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-03-22T10:41:13.138-03:00  INFO 10888 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-22T10:41:14.898-03:00  WARN 10888 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-22T10:41:15.393-03:00  INFO 10888 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@707869d4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bcbd12a, org.springframework.security.web.context.SecurityContextHolderFilter@32459eb9, org.springframework.security.web.header.HeaderWriterFilter@72f7398e, org.springframework.web.filter.CorsFilter@10236e7f, org.springframework.security.web.authentication.logout.LogoutFilter@5d838ee9, com.minascafe.api.infra.security.SecurityFilter@2c0df200, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58629ebf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@526a1a30, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@699cc1e, org.springframework.security.web.session.SessionManagementFilter@71e673f9, org.springframework.security.web.access.ExceptionTranslationFilter@475e2669, org.springframework.security.web.access.intercept.AuthorizationFilter@740ff6ff]
+2024-03-22T10:41:15.977-03:00  INFO 10888 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-03-22T10:41:16.020-03:00  INFO 10888 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-22T10:41:16.036-03:00  INFO 10888 --- [restartedMain] com.minascafe.api.MinasCafeApplication   : Started MinasCafeApplication in 9.95 seconds (process running for 10.746)
+2024-03-22T10:41:35.852-03:00  INFO 10888 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-22T10:41:35.853-03:00  INFO 10888 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-22T10:41:35.854-03:00  INFO 10888 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-22T10:55:06.332-03:00  INFO 10888 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-22T10:55:06.340-03:00  INFO 10888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-03-22T10:55:06.352-03:00  INFO 10888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
