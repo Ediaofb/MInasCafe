@@ -16,6 +16,7 @@ public record DadosAtualizacaoCafeCoco(
        String classificacao,
        Float humidade,
        String lancado,
+       String baixado,
        String meieiro,
        Integer barracao,
        Integer numero_nota,

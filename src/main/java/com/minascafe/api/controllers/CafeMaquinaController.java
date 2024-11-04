@@ -33,8 +33,9 @@ public class CafeMaquinaController {
         System.out.println("Lote de café máquina salvo no banco com sucesso!");
     }
 
-    @CrossOrigin
+    
     @GetMapping // listagem de Café Máquina
+    @CrossOrigin
     public ResponseEntity<List<CafeMaquina>> recuperar() {
         List<CafeMaquina> maq = cafemaquinaRepository.findAll();
         return ResponseEntity.ok().body(maq);

@@ -14,6 +14,7 @@ public record DadosCadastroCafeCoco(
         int barracao,
         String classificacao,
         String lancado,
+        String baixado,
         int peneira,
         Float humidade,
         int numero_nota,

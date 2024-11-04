@@ -28,9 +28,10 @@ public class CafeBeneficiadoController {
     @Autowired
     private CafeBeneficiadoRepository cafeBeneficiadoRepository; // Injetando o Repository como sendo um atributo
 
+    
+    @CrossOrigin
     @PostMapping
     @Transactional
-    @CrossOrigin
     public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroCafeBeneficiado cb) {
         cafeBeneficiadoRepository.save(new CafeBeneficiado(cb));
 
@@ -61,8 +62,8 @@ public class CafeBeneficiadoController {
         return cafeBeneficiadoRepository.findAllByAtivoFalse(paginacao).map(DadosListagemCafeBeneficiado::new);
     }
 
-    @GetMapping("/{lote}") // listagem de lotes de Café Beneficiado "ativos"
     @CrossOrigin
+    @GetMapping("{lote}") // listagem de lotes de Café Beneficiado "ativos"
     public ResponseEntity<List<CafeBeneficiado>> encontrar(@PathVariable int lote) {// No PathVariable o parâmetro é
                                                                                     // passado diretamente no corpo da
                                                                                     // requisição e esse valor faz parte
@@ -78,11 +79,13 @@ public class CafeBeneficiadoController {
         return ResponseEntity.ok().body(caf);
     }
 
-    @PutMapping
+    @PutMapping // Realiza atualizações (Update) no cadastro
     @Transactional
     @CrossOrigin
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeBeneficiado db) {
+        System.out.println("Atualizando lote: "+db.lote() + ", ativo: " + db.ativo());
         var beneficiado = cafeBeneficiadoRepository.getReferenceById(db.lote());
         beneficiado.atualizarInformacoes(db);
+        cafeBeneficiadoRepository.flush(); // Garante que a transação seja persistida
     }
 }

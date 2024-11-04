@@ -27,6 +27,7 @@ public record DadosCadastroCafeBeneficiado(
         int peneira,
         float humidade,
         String lancado,
+        String baixado,
         String observacoes,
         String meieiro,
         int porcentagem_produtor,

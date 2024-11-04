@@ -44,6 +44,7 @@ public class CafeCoco implements Serializable{
     private int catacao;
     private int peneira;
     private String lancado;
+    private String baixado;
     private String observacoes;
     private String referencia;
     private String meieiro;
@@ -60,6 +61,7 @@ public class CafeCoco implements Serializable{
         this.barracao = cc.barracao();
         this.classificacao = cc.classificacao();
         this.lancado = "nao";
+        this.baixado = "nao";
         this.peneira = cc.peneira();
         this.numero_nota = cc.numero_nota();
         this.referencia = cc.referencia();
@@ -215,6 +217,15 @@ public class CafeCoco implements Serializable{
         this.lancado = lancado;
     }
 
+    @Column (name = "baixado", nullable = true)
+    public String getBaixado(){
+        return baixado;
+    }
+
+    public void setBaixado(String baixado) {
+        this.baixado = baixado;
+    }
+
     @Column (name = "observacoes", nullable = true)
     public String getObservacoes() {
         return observacoes;
@@ -296,6 +307,9 @@ public class CafeCoco implements Serializable{
         }
         if(da.lancado() != null){
             this.lancado = da.lancado();
+        }
+        if(da.baixado() != null){
+            this.baixado = da.baixado();
         }
         if(da.meieiro() != null){
             this.meieiro = da.meieiro();
