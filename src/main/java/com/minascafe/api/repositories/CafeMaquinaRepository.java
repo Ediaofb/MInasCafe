@@ -13,14 +13,9 @@ import java.util.List;
 public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Integer> {
 
     CafeMaquina findByLote(int Lote);//SELECT * FROM CafeMaquina WHERE Lote = this.Lote
-
     List<CafeMaquina> findByProdutor(String Produtor);//SELECT * FROM CafeMaquina WHERE CafeMaquina = this.CafeMaquina
-
     Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
-
     Page<CafeMaquina> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = false (café máquina baixado)
-
     List<CafeMaquina> findByLoteAndAtivoTrue(int lote);
-
     List<CafeMaquina> findAll();
 }

@@ -25,6 +25,7 @@ public record DadosCadastroCafeMaquina(
         int catacao,
         int peneira,
         String lancado,
+        String baixado,
         String observacoes,
         String referencia,
         String meieiro,
