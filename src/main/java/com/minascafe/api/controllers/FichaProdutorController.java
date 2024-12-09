@@ -72,16 +72,6 @@ public class FichaProdutorController {
     }
 
     @CrossOrigin
-    @GetMapping("/filter") // Realiza busca de ficha produtor filtrando por qualquer quantidade de letras
-    public List<FichaProdutorDto> findFichaByNome(@RequestParam("nome") String nome) {
-        System.out.println("name = " + nome);
-        return this.prod.findByNomeContains(nome)
-                .stream()
-                .map(FichaProdutorDto::converter)
-                .collect(Collectors.toList());
-    }
-
-    @CrossOrigin
     @PutMapping // Realiza atualizações (Update) no cadastro
     @Transactional // Para fazer escrita no banco de dados de forma efetiva
     public void atualizar(@RequestBody @Valid DadosAtualizacaoFichaProdutor fb) {
