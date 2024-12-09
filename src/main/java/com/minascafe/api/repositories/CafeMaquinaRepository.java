@@ -17,5 +17,7 @@ public interface CafeMaquinaRepository extends JpaRepository<CafeMaquina, Intege
     Page<CafeMaquina> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = true
     Page<CafeMaquina> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeMaquina WHERE ativo = false (café máquina baixado)
     List<CafeMaquina> findByLoteAndAtivoTrue(int lote);
+    List<CafeMaquina> findByProdutorContains(String produtor);
+    List<CafeMaquina> findByMeieiroContains(String meieiro);
     List<CafeMaquina> findAll();
 }

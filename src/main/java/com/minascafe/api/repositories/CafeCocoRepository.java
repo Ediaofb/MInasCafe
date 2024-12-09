@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 //@Transactional
@@ -15,9 +14,11 @@ public interface CafeCocoRepository extends JpaRepository<CafeCoco, Integer>{//Ã
 
     CafeCoco findByLote(int Lote);// = SELECT * FROM CafeCoco WHERE Lote = this.Lote    
     CafeCoco findByProdutor(String Produtor);// = SELELCT * FROM CafeCoco WHERE Produtor = this.Produtor    
-    Page<CafeCoco> findAllByAtivoTrue(Pageable paginacao);    
-    Page<CafeCoco> findAllByAtivoFalse(Pageable paginacao);    
-    List<CafeCoco> findByLoteAndAtivoTrue(int lote);    
-    List<CafeCoco> findByReferenciaAndAtivoTrue(String referencia);    
+    Page<CafeCoco> findAllByAtivoTrue(Pageable paginacao);
+    Page<CafeCoco> findAllByAtivoFalse(Pageable paginacao);
+    List<CafeCoco> findByLoteAndAtivoTrue(int lote);
+    List<CafeCoco> findByReferenciaAndAtivoTrue(String referencia);
+    List<CafeCoco> findByProdutorContains(String produtor);
+    List<CafeCoco> findByMeieiroContains(String meieiro);
     List <CafeCoco> findAll();
 }

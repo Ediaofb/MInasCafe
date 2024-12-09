@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 
@@ -18,5 +17,7 @@ public interface CafeBeneficiadoRepository extends JpaRepository<CafeBeneficiado
     Page<CafeBeneficiado> findAllByAtivoTrue(Pageable paginacao); //SELECT * FROM CafeBeneficiado WHERE ativo = true
     Page<CafeBeneficiado> findAllByAtivoFalse(Pageable paginacao); //SELECT * FROM CafeBeneficiado WHERE ativo = false (café benefiado "baixado")
     List<CafeBeneficiado> findByLoteAndAtivoTrue(int lote); // Consulta por lotes ativos - SELECT * FROM CafeBeneficiado c WHERE c.lote = lote AND ativo = true
+    List<CafeBeneficiado> findByProdutorContains(String produtor);
+    List<CafeBeneficiado> findByMeieiroContains(String meieiro);
     List<CafeBeneficiado> findAll();
 }
