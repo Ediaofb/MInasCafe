@@ -49,18 +49,22 @@ public class CafeCocoController {
         List<CafeCoco> coq = cafe_coco.findAll();
         return ResponseEntity.ok().body(coq);
     }
+    
+    @CrossOrigin
+    @GetMapping("/filter") // Realiza busca de ficha produtor filtrando por qualquer quantidade de letras
+    public ResponseEntity <List<CafeCoco>> findCocoBynome(@RequestParam String produtor) { //Retorna uma lista por permitir consultar por nomes parciais
+        System.out.println("Produtor:" + produtor);
+        List <CafeCoco> co = cafe_coco.findByProdutorContains(produtor);
+        return ResponseEntity.ok().body(co);
+    }
 
-    /*
-     * @GetMapping //Listagem de Café em Côco Ativo Paginado
-     * public Page<DadosListagemCafeCoco> listar(Pageable paginacao){//Devolve uma
-     * lista de Café em Côco e informações sobre a paginação. É apenas leitura, não
-     * precisa da anotação @Transactional
-     * return
-     * cafe_coco.findAllByAtivoTrue(paginacao).map(DadosListagemCafeCoco::new);//map
-     * = Mapeamento. Converte uma lista de CafeCoco para uma lista de
-     * DadosListagemCafeCoco.
-     * }
-     */
+    @CrossOrigin
+    @GetMapping("/filter/meieiro") //endpoint para buscar por meieiro
+    public ResponseEntity <List<CafeCoco>> findCocoByMeieiro(@RequestParam String meieiro) {
+        System.out.println("meieiro: " +meieiro);
+        List <CafeCoco> cc = cafe_coco.findByMeieiroContains(meieiro);
+        return ResponseEntity.ok().body(cc);
+    }
 
     @CrossOrigin
     @GetMapping("/baixado") // listagem de Café em Côco deletado (inativo)
@@ -110,29 +114,4 @@ public class CafeCocoController {
                                                      // DTO
         cafe.inativo();
     }
-
-    /*
-     * @PostMapping
-     * public ResponseEntity<CafeCocoResponse<CafeCocoDto>>
-     * cadastrar(@Valid @RequestBody CafeCocoDto cafe_cocoDto,//Pega os dados do
-     * request e converte em um Dto. @Valid chama a validação que eu criei no Dto.
-     * BindingResult result) throws NoSuchAlgorithmException{//Exceção da parte de
-     * geração de senhas - BindingResult - terá a informação do resultado da
-     * validação do Dto.
-     * log.info("Cadastrando um café em côco: {}", cafe_cocoDto.toString()); //passa
-     * os dados que chegaram via Post Request
-     * CafeCocoResponse<CafeCocoDto> response = new CafeCocoResponse<CafeCocoDto>();
-     * //Criando uma instância de CafeCocoResponse que será utilizadom para
-     * validarDadosExistentes(cafe_cocoDto, result);
-     * 
-     * return ResponseEntity.ok(response);
-     * }
-     * private void validarDadosExistentes(CafeCocoDto cafe_CocoDto, BindingResult
-     * result) { //Verifica se esse café em côco já existe no banco de dados
-     * this.cafe_Coco_Service.buscarPorProdutor(cafe_CocoDto.getProdutor())
-     * .ifPresent(emp -> result.addError/*Adicionando um erro ao result
-     *//*
-        * (new ObjectError("cafe_Coco", "Este café em Côco já existe!")));
-        * }
-        */
 }

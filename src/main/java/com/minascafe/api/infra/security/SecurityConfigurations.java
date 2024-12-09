@@ -90,11 +90,21 @@ public class SecurityConfigurations {
     public CorsConfigurationSource corsConfigurationSource() {
         var configs = new CorsConfiguration();
         String[] allowedOrigins = frontend.split(",");
+
+        /* Adiciona as origens permitidas */
         for (String origin : allowedOrigins){
             configs.addAllowedOrigin(origin.trim());
         }
-        configs.addAllowedHeader("*");
+
+        //Define os métodos permitidos
+        configs.addAllowedHeader("Content-Type");
+        configs.addAllowedHeader("Authorization");
+        configs.addAllowedHeader("Accept");
+        configs.addAllowedHeader("Origin");
+        // configs.addAllowedHeader("*");
         configs.addAllowedMethod("*");
+        configs.setAllowCredentials(true);
+        // configs.addAllowedMethod("*");
         //configs.addAllowedOrigin(frontend);
 
 

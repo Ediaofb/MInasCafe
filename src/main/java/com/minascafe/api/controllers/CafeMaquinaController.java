@@ -75,6 +75,22 @@ public class CafeMaquinaController {
     }
 
     @CrossOrigin
+    @GetMapping("/filter")
+    public ResponseEntity<List<CafeMaquina>>findMaquinaByNome(@RequestParam String produtor){ //Retorna uma lista por permitir consultar por nomes parciais
+      System.out.println("produtor:" + produtor);
+      List <CafeMaquina> list = cafemaquinaRepository.findByProdutorContains(produtor);
+      return ResponseEntity.ok().body(list);
+    }
+
+    @CrossOrigin
+    @GetMapping("filter/meieiro")
+    public ResponseEntity <List<CafeMaquina>> findmaquinabymeieiro(@RequestParam String meieiro) {
+        System.out.println("meieiro: " + meieiro);
+        List<CafeMaquina> ret = cafemaquinaRepository.findByMeieiroContains(meieiro);
+        return ResponseEntity.ok().body(ret);
+    }
+
+    @CrossOrigin
     @GetMapping("{lote}") // listagem de lotes de Café Máquina "ativos"
     public ResponseEntity<List<CafeMaquina>> localizar(@PathVariable int lote) {
         List<CafeMaquina> cam = cafemaquinaRepository.findByLoteAndAtivoTrue(lote);

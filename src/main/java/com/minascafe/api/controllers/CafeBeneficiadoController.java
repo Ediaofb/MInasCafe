@@ -1,6 +1,9 @@
 package com.minascafe.api.controllers;
 
+import com.minascafe.api.dtos.CafeBeneficiadoDto;
+import com.minascafe.api.dtos.FichaProdutorDto;
 import com.minascafe.api.entities.CafeBeneficiado;
+import com.minascafe.api.entities.FichaProdutor;
 import com.minascafe.api.record.DadosAtualizacaoCafeBeneficiado;
 import com.minascafe.api.record.DadosCadastroCafeBeneficiado;
 import com.minascafe.api.record.DadosListagemCafeBeneficiado;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController // Endpoint (página web) de Controller
 @RequestMapping("cafebeneficiado") // Define a url da classe
@@ -50,12 +54,12 @@ public class CafeBeneficiadoController {
 
     /*
      * @GetMapping //Listagem de Café Beneficiado ativo paginado
-     * public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){
-     * return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(
-     * DadosListagemCafeBeneficiado::new);
-     * }
-     */
-
+     * public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){ 
+     * return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(  
+     * DadosListagemCafeBeneficiado::new);  
+     * }    
+     */ 
+    
     @GetMapping("/baixado") // listagem de Café Beneficiado deletado (inativo)
     @CrossOrigin
     public Page<DadosListagemCafeBeneficiado> Baixa(Pageable paginacao) {
@@ -79,9 +83,25 @@ public class CafeBeneficiadoController {
         return ResponseEntity.ok().body(caf);
     }
 
+    @CrossOrigin
+    @GetMapping("/filter") // Realiza busca de ficha produtor filtrando por qualquer quantidade de letras
+    public ResponseEntity <List<CafeBeneficiado>> findBeneficiadoByNome(@RequestParam String produtor) { //Retorna uma lista por permitir consultar por nomes parciais
+        System.out.println("produtor = " + produtor);
+        List <CafeBeneficiado> objs = cafeBeneficiadoRepository.findByProdutorContains(produtor);
+        return ResponseEntity.ok().body(objs);
+    }
+
+    @CrossOrigin
+    @GetMapping("/filter/meieiro") //endpoint para buscar por meieiro
+    public ResponseEntity <List<CafeBeneficiado>> findbeneficiadobymeieiro(@RequestParam String meieiro) {
+       System.out.println("meieiro = " +meieiro);
+       List <CafeBeneficiado> ca = cafeBeneficiadoRepository.findByMeieiroContains(meieiro);
+       return ResponseEntity.ok().body(ca);
+    }
+    
+    @CrossOrigin
     @PutMapping // Realiza atualizações (Update) no cadastro
     @Transactional
-    @CrossOrigin
     public void atualizar(@RequestBody @Valid DadosAtualizacaoCafeBeneficiado db) {
         System.out.println("Atualizando lote: "+db.lote() + ", ativo: " + db.ativo());
         var beneficiado = cafeBeneficiadoRepository.getReferenceById(db.lote());

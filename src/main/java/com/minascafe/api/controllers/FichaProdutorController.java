@@ -56,6 +56,14 @@ public class FichaProdutorController {
     }
 
     @CrossOrigin
+    @GetMapping("/filter") // Realiza busca de ficha produtor filtrando por qualquer quantidade de letras
+    public ResponseEntity <List<FichaProdutor>> findFichaByNome(@RequestParam String nome) { //Retorna uma lista por permitir consultar por nomes parciais
+        System.out.println("name = " + nome);
+        List <FichaProdutor> objs = prod.findByNomeContains(nome);
+        return ResponseEntity.ok().body(objs);
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/nome/{nome}") // Retorna uma ficha de produtor em BUSCA POR NOME
     public ResponseEntity<FichaProdutor> buscar(@PathVariable String nome) { // PathVariable obtém o conteúdo que vem
                                                                              // após a última barra e trata a requisição

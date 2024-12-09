@@ -33,6 +33,7 @@ public class FichaProdutor implements Serializable{
 
     private String lote;
     private String nome;
+    private String meieiro;
     private String apelido;
     private String cpf;
     private String telefone;
@@ -64,6 +65,7 @@ public class FichaProdutor implements Serializable{
     public FichaProdutor(DadosCadastroFichaProdutor fp) {
         this.lote = fp.lote();
         this.nome = fp.nome();
+        this.meieiro = fp.meieiro();
         this.apelido = fp.apelido();
         this.cpf = fp.cpf();
         this.telefone = fp.telefone();
@@ -99,6 +101,9 @@ public class FichaProdutor implements Serializable{
         }
         if(fb.nome() != null){
           this.nome = fb.nome();
+        }
+        if(fb.meieiro() != null){
+          this.meieiro = fb.meieiro();
         }
         if(fb.cpf() != null){
             this.cpf = fb.cpf();

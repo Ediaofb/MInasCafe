@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public record DadosCadastroCafeCoco(
         @NotBlank(message = "O campo produtor não pode estar vazio!") //verifica se não é nulo e não é vazio = @NotNull + verificação de vazio
         String produtor,
+        String meieiro,
         String apelido,
         @NotNull
         LocalDate data,
@@ -27,7 +28,6 @@ public record DadosCadastroCafeCoco(
         @Range(min = 0, max = 44, message = "Acima de 45 quilos, considere adicionar mais 1 saco!")
         float quilos,
         String observacoes,
-        String meieiro,
         int porcentagem_meieiro,
         int porcentagem_produtor) {
 

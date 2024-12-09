@@ -9,6 +9,7 @@ public record DadosAtualizacaoFichaProdutor(
         String lote,
         LocalDate data,
         String nome,
+        String meieiro,
         String cpf,
         String telefone,
         String banco,

@@ -30,6 +30,7 @@ public class CafeCoco implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
     private int lote;
     private String produtor;
+    private String meieiro;
     private String apelido;
     private Boolean ativo;
     private String status;
@@ -47,13 +48,13 @@ public class CafeCoco implements Serializable{
     private String baixado;
     private String observacoes;
     private String referencia;
-    private String meieiro;
     private int porcentagem_produtor;
     private int porcentagem_meieiro;
 
 
     public CafeCoco(DadosCadastroCafeCoco cc){
         this.produtor = cc.produtor();
+        this.meieiro = cc.meieiro();
         this.apelido = cc.apelido();
         this.ativo = true;
         this.data = cc.data();
@@ -71,7 +72,6 @@ public class CafeCoco implements Serializable{
         this.quilos = cc.quilos();
         this.humidade = cc.humidade();
         this.observacoes = cc.observacoes();
-        this.meieiro = cc.meieiro();
         this.porcentagem_meieiro = cc.porcentagem_meieiro();
         this.porcentagem_produtor = cc.porcentagem_produtor();
     }
@@ -98,6 +98,15 @@ public class CafeCoco implements Serializable{
 
     public void setProdutor(String produtor) {
         this.produtor = produtor;
+    }
+    
+    @Column (name = "meieiro", nullable = true)
+    public String getMeieiro() {
+        return meieiro;
+    }
+
+    public void setMeieiro(String meieiro) {
+        this.meieiro = meieiro;
     }
 
     @Column (name = "apelido", nullable = true)
@@ -242,15 +251,6 @@ public class CafeCoco implements Serializable{
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
-    }
-
-    @Column (name = "meieiro", nullable = true)
-    public String getMeieiro() {
-        return meieiro;
-    }
-
-    public void setMeieiro(String meieiro) {
-        this.meieiro = meieiro;
     }
 
     @Column (name = "porcentagem_produtor", nullable = true)

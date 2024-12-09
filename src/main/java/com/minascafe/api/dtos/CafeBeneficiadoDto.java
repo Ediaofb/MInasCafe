@@ -6,6 +6,7 @@ public class CafeBeneficiadoDto {
 
     private int lote;
     private String produtor;
+    private String meieiro;
     private Date data;
     private int sacas;
     private double quilos;
@@ -26,6 +27,10 @@ public class CafeBeneficiadoDto {
     }
     public void setProdutor(String produtor) {
         this.produtor = produtor;
+    }
+
+    public void getMeieiro(String meieiro) {
+        this.meieiro = meieiro;
     }
 
     public Date getData() {

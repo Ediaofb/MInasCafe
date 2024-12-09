@@ -27,7 +27,7 @@ public class CafeMaquina implements Serializable{
 
     private static final long serialVersionUID = 57352917407981597L;
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)//Gera valores de maneira crescente iniciando pelo valor 1
+    @GeneratedValue(strategy=GenerationType.IDENTITY) // Gera valores de maneira crescente iniciando pelo valor 1 sem repetir
     private int lote;
     private String produtor;
     private String apelido;
