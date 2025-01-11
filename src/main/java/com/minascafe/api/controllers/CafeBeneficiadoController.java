@@ -7,8 +7,10 @@ import com.minascafe.api.entities.FichaProdutor;
 import com.minascafe.api.record.DadosAtualizacaoCafeBeneficiado;
 import com.minascafe.api.record.DadosCadastroCafeBeneficiado;
 import com.minascafe.api.record.DadosListagemCafeBeneficiado;
+import com.minascafe.api.record.TotalAtivosResponse;
 import com.minascafe.api.repositories.CafeBeneficiadoRepository;
 import jakarta.validation.Valid;
+import org.hibernate.mapping.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +58,30 @@ public class CafeBeneficiadoController {
      * @GetMapping //Listagem de Café Beneficiado ativo paginado
      * public Page<DadosListagemCafeBeneficiado>Listar(Pageable paginacao){ 
      * return cafeBeneficiadoRepository.findAllByAtivoTrue(paginacao).map(  
-     * DadosListagemCafeBeneficiado::new);  
+     * DadosListagemCafeBeneficiado::new);
      * }    
-     */ 
+     */
+    
+     
+    @CrossOrigin
+    @GetMapping("/totais-ativos")
+    public ResponseEntity<TotalAtivosResponse> calcularTotais() {
+     //Busca todos os lotes com ativo = true 
+     List<CafeBeneficiado> lotesAtivos = cafeBeneficiadoRepository.findAllByAtivoTrue(Pageable.unpaged()).getContent();
+
+     //Soma os quilos como double
+     double totalQuilos = lotesAtivos.stream().mapToDouble(CafeBeneficiado::getQuilos).sum();
+     int totalSacasExistentes = lotesAtivos.stream().mapToInt(CafeBeneficiado::getSacas).sum();
+
+     //Calcula as sacas adicionais e os quilos restantes
+     int sacasAdicionais = (int) (totalQuilos / 60); //Convertendo para int apenas a parte inteira
+     float quilosRestantes = (float) (totalQuilos % 60); // Restante em float para maior precisão 
+     int sacasTotais = totalSacasExistentes + sacasAdicionais;
+
+     // Cria a resposta
+     TotalAtivosResponse resposta = new TotalAtivosResponse(sacasTotais, quilosRestantes);
+     return ResponseEntity.ok(resposta);
+    }
     
     @GetMapping("/baixado") // listagem de Café Beneficiado deletado (inativo)
     @CrossOrigin
@@ -97,7 +120,7 @@ public class CafeBeneficiadoController {
        System.out.println("meieiro = " +meieiro);
        List <CafeBeneficiado> ca = cafeBeneficiadoRepository.findByMeieiroContains(meieiro);
        return ResponseEntity.ok().body(ca);
-    }
+    }   
     
     @CrossOrigin
     @PutMapping // Realiza atualizações (Update) no cadastro

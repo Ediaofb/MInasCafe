@@ -93,7 +93,8 @@ public class SecurityConfigurations {
 
         /* Adiciona as origens permitidas */
         for (String origin : allowedOrigins){
-            configs.addAllowedOrigin(origin.trim());
+        configs.addAllowedOrigin(origin.trim());
+        System.out.println("BackEnd: Origem permitida: " + origin.trim());
         }
 
         //Define os métodos permitidos
@@ -102,7 +103,9 @@ public class SecurityConfigurations {
         configs.addAllowedHeader("Accept");
         configs.addAllowedHeader("Origin");
         // configs.addAllowedHeader("*");
-        configs.addAllowedMethod("*");
+        configs.addAllowedMethod("GET");
+        configs.addAllowedMethod("PUT");
+        configs.addAllowedMethod("POST");
         configs.setAllowCredentials(true);
         // configs.addAllowedMethod("*");
         //configs.addAllowedOrigin(frontend);

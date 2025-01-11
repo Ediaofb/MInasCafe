@@ -14,6 +14,5 @@ public class MinasCafeApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(MinasCafeApplication.class, args);
-
     }
 }

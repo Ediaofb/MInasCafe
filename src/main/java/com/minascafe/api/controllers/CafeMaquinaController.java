@@ -4,6 +4,7 @@ import com.minascafe.api.entities.CafeMaquina;
 import com.minascafe.api.record.DadosAtualizacaoCafeMaquina;
 import com.minascafe.api.record.DadosCadastroCafeMaquina;
 import com.minascafe.api.record.DadosListagemCafeMaquina;
+import com.minascafe.api.record.TotalAtivosResponse;
 import com.minascafe.api.repositories.CafeMaquinaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,26 @@ public class CafeMaquinaController {
      * cafemaquinaRepository para o objeto DTO
      * }
      */
+
+    @CrossOrigin
+    @GetMapping("/totais-ativos")
+    public ResponseEntity<TotalAtivosResponse> calcularTotaisMaquina() {
+     //Busca todos os lotes com ativo = true
+     List<CafeMaquina> lotesAtivos = cafemaquinaRepository.findAllByAtivoTrue(Pageable.unpaged()).getContent();
+
+     //Soma os quilos como double
+     double totQuilos = lotesAtivos.stream().mapToDouble(CafeMaquina::getQuilos).sum();
+     int totSacasExistentes = lotesAtivos.stream().mapToInt(CafeMaquina::getSacas).sum();
+
+     //Calcula as sacas adicionais e os quilos restantes
+     int sacasAdicionais = (int) (totQuilos / 60); // Convertendo para int apenas a parte inteira
+     float quilosRestantes = (float) (totQuilos % 60); // Restante em float para maior precisão
+     int sacasTotais = totSacasExistentes + sacasAdicionais;
+
+     // Cria a resposta
+     TotalAtivosResponse respost = new TotalAtivosResponse(sacasTotais, quilosRestantes);
+     return ResponseEntity.ok(respost);
+    }
 
     @CrossOrigin
     @GetMapping("/baixado") // listagem de Café Máquina deletado (inativo)

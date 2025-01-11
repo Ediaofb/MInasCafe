@@ -42,6 +42,7 @@ com\minascafe\api\controllers\CafeBeneficiadoController.class
 com\minascafe\api\entities\User.class
 com\minascafe\api\record\AtualizacaoStatusRequest.class
 com\minascafe\api\record\DadosListagemCafeCoco.class
+com\minascafe\api\record\TotalAtivosResponse.class
 com\minascafe\api\services\FichaProdutorService.class
 com\minascafe\api\controllers\LigaController.class
 com\minascafe\api\entities\AmostraSemEstoque.class
